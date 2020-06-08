@@ -31,6 +31,9 @@ def root():
 
     return render_template('index.html', times=dummy_times)
 
+@app.route('/hello')
+def hello_world():
+   return "hello world!"
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
