@@ -1,6 +1,6 @@
 ## prereqs
 
-1. pip install bokeh --user
+1. `pip install bokeh --user`
 2. download sample data: `python -c "import bokeh.sampledata; bokeh.sampledata.download()"`
 
 ## how to run
