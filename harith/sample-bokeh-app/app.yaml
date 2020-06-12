@@ -1,25 +1,5 @@
-# runtime: python37
-# #entrypoint: bokeh serve main.py --port 8080
-
-# handlers:
-#   # This configures Google App Engine to serve the files in the app's static
-#   # directory.
-# - url: /static
-#   static_dir: static
-
-# # - url: /sample-bokeh-app
-# #   script: main.py
-
-#   # This handler routes all requests not caught above to your main app. It is
-#   # required when static routes are defined, but can be omitted (along with
-#   # the entire handlers section) when there are no static files defined.
-# - url: /.*
-#   script: auto
-
-# libraries:
-# - name: numpy
-#   version: "1.18.1"
-
 runtime: custom
-# runtime: python37
 env: flex
+
+env_variables:
+  BOKEH_ALLOW_WS_ORIGIN: "elrufaie-capstone.wl.r.appspot.com"
