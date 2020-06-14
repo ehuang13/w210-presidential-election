@@ -1,0 +1,10 @@
+#Flask==1.1.2
+#Bokeh==2.0.2
+#numpy==1.18.1
+
+Flask==1.0.2
+Bokeh==1.4.0
+gunicorn==19.9.0
+Numpy==1.17.0
+requests==2.21.0
+pandas==0.25.3

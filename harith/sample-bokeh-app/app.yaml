@@ -1,0 +1,5 @@
+runtime: custom
+env: flex
+
+env_variables:
+  BOKEH_ALLOW_WS_ORIGIN: "elrufaie-capstone.wl.r.appspot.com"
