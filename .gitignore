@@ -1,3 +1,4 @@
 capsenv/
 creds*
 twtdata/
+.ipynb_checkpoints
