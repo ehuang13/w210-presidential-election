@@ -15,7 +15,9 @@
 # [START gae_python37_render_template]
 import datetime
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+
+from google.cloud import storage
 
 app = Flask(__name__)
 
@@ -34,6 +36,20 @@ def root():
 @app.route('/hello')
 def hello_world():
    return "hello world!"
+
+
+@app.route('/data')
+def data():
+  year = request.args.get('year')
+  bucket_name = 'presidential-elections'
+  # Instantiates a client
+  client = storage.Client()
+
+  bucket = client.get_bucket(bucket_name)
+
+  blob = bucket.get_blob('elections-2000.csv')
+
+  return blob.download_as_string()
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App
