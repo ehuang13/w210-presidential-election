@@ -30,7 +30,6 @@ def root():
                    datetime.datetime(2018, 1, 2, 10, 30, 0),
                    datetime.datetime(2018, 1, 3, 11, 0, 0),
                    ]
-
     return render_template('index.html', times=dummy_times)
 
 @app.route('/hello')
