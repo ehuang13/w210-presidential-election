@@ -1,115 +1,85 @@
-from collections import Counter
-from math import pi
-
-import numpy as np
+# imports
+import geopandas as gpd
 import pandas as pd
+import json
 
-from bokeh.io import curdoc
-from bokeh.layouts import column
-from bokeh.models import (ColumnDataSource, DataTable, NumberFormatter,
-                          RangeTool, StringFormatter, TableColumn,)
-from bokeh.palettes import Spectral11
+from bokeh.io import show, curdoc
+from bokeh.models import (CDSView, ColorBar, ColumnDataSource,
+                          CustomJS, CustomJSFilter,
+                          GeoJSONDataSource, HoverTool,
+                          LinearColorMapper, Slider)
+from bokeh.layouts import column, row, widgetbox
+from bokeh.palettes import brewer
 from bokeh.plotting import figure
-from bokeh.sampledata.autompg2 import autompg2 as mpg
-from bokeh.sampledata.stocks import AAPL
 from bokeh.transform import cumsum
 
-# Timeseries
+# plot counties US map visualization
 
-dates = np.array(AAPL['date'], dtype=np.datetime64)
-source = ColumnDataSource(data=dict(date=dates, close=AAPL['adj_close']))
+# read in combined dataset
+combined_df = pd.read_csv("https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/data/combined_jun13.csv")
 
-p = figure(plot_height=110, tools="", toolbar_location=None, #name="line",
-           x_axis_type="datetime", x_range=(dates[1500], dates[2500]), sizing_mode="scale_width")
+# read in counties shapefile from US Census Bureau
+counties_usa = gpd.read_file("bokeh/cb_2018_us_county_20m.shp")
 
-p.line('date', 'close', source=source, line_width=2, alpha=0.7)
-p.yaxis.axis_label = 'Traffic'
-p.background_fill_color="#f5f5f5"
-p.grid.grid_line_color="white"
+# cast GEOID data type to float64 instead of str for merging
+counties_usa["GEOID"] = counties_usa["GEOID"].astype("float64")
 
-select = figure(plot_height=50, plot_width=800, y_range=p.y_range,
-                x_axis_type="datetime", y_axis_type=None,
-                tools="", toolbar_location=None, sizing_mode="scale_width")
+# merge counties shapefile with combined_df
+merged_counties = counties_usa.merge(combined_df, left_on="GEOID", right_on="FIPS")
 
-range_rool = RangeTool(x_range=p.x_range)
-range_rool.overlay.fill_color = "navy"
-range_rool.overlay.fill_alpha = 0.2
+# drop Alaska and Hawaii
+merged_counties = merged_counties.loc[~merged_counties["STATE"].isin(["Alaska", "Hawaii"])]
 
-select.line('date', 'close', source=source)
-select.ygrid.grid_line_color = None
-select.add_tools(range_rool)
-select.toolbar.active_multi = range_rool
-select.background_fill_color="#f5f5f5"
-select.grid.grid_line_color="white"
-select.x_range.range_padding = 0.01
+# create 2000 election year data frame
+yr2000 = merged_counties["YEAR"] == 2000
+merged_2000 = merged_counties[yr2000]
 
-layout = column(p, select, sizing_mode="scale_width", name="line")
+# input GeoJSON source that contains features for plotting
+geosource_2000 = GeoJSONDataSource(geojson = merged_2000.to_json())
 
-curdoc().add_root(layout)
+# define color palettes
+palette = brewer["GnBu"][8]
 
-# Donut chart
+# use reverse order so higher values are darker
+palette = palette[::-1]
 
-x = Counter({ 'United States': 157, 'United Kingdom': 93, 'Japan': 89, 'China': 63,
-              'Germany': 44, 'India': 42, 'Italy': 40, 'Australia': 35, 'Brazil': 32,
-              'France': 31, 'Taiwan': 31  })
+# instantiate LineraColorMapper and manually set low/high end for colorbar
+color_mapper = LinearColorMapper(palette = palette, low = 0,
+                                 high = 2.371175e+04)
 
-data = pd.DataFrame.from_dict(dict(x), orient='index').reset_index().rename(index=str, columns={0:'value', 'index':'country'})
-data['angle'] = data['value']/sum(x.values()) * 2*pi
-data['color'] = Spectral11
+# create color slider bar at the bottom of chart
+color_bar = ColorBar(color_mapper = color_mapper,
+                     label_standoff = 8,
+                     width = 500, height = 20,
+                     border_line_color = None,
+                     location = (0,0),
+                     orientation = "horizontal")
 
-region = figure(plot_height=350, toolbar_location=None, outline_line_color=None, sizing_mode="scale_both", name="region", x_range=(-0.4, 1))
+# create figure object
+plot = figure(title = "Total # of Votes Cast by County in 2000 Presidential Election",
+           plot_height = 600, plot_width = 950,
+           toolbar_location = "below",
+           tools = "pan, wheel_zoom, reset")
 
-region.annular_wedge(x=-0, y=1, inner_radius=0.2, outer_radius=0.32,
-                  start_angle=cumsum('angle', include_zero=True), end_angle=cumsum('angle'),
-                  line_color="white", fill_color='color', legend_group='country', source=data)
+plot.xgrid.grid_line_color = None
+plot.ygrid.grid_line_color = None
 
-region.axis.axis_label=None
-region.axis.visible=False
-region.grid.grid_line_color = None
-region.legend.label_text_font_size = "0.7em"
-region.legend.spacing = 1
-region.legend.glyph_height = 15
-region.legend.label_height = 15
+# add patch renderer to figure
+counties = plot.patches("xs","ys", source = geosource_2000,
+                   fill_color = {"field": "COUNTY_TOTALVOTES",
+                                 "transform": color_mapper},
+                   line_color = "gray",
+                   line_width = 0.25,
+                   fill_alpha = 1)
 
-curdoc().add_root(region)
+# create hover tool
+plot.add_tools(HoverTool(renderers = [counties],
+                      tooltips = [("County","@NAME"),
+                               ("Votes", "@COUNTY_TOTALVOTES")]))
 
-# Bar chart
+# specify colorbar layout
+plot.add_layout(color_bar, "below")
 
-plats = ("IOS", "Android", "OSX", "Windows", "Other")
-values = (35, 22, 13, 26, 4)
-platform = figure(plot_height=350, toolbar_location=None, outline_line_color=None, sizing_mode="scale_both", name="platform",
-                  y_range=list(reversed(plats)), x_axis_location="above")
-platform.x_range.start = 0
-platform.ygrid.grid_line_color = None
-platform.axis.minor_tick_line_color = None
-platform.outline_line_color = None
+curdoc().add_root(plot)
 
-platform.hbar(left=0, right=values, y=plats, height=0.8)
-
-curdoc().add_root(platform)
-
-# Table
-
-source = ColumnDataSource(data=mpg[:6])
-columns = [
-    TableColumn(field="cyl", title="Counts"),
-    TableColumn(field="cty", title="Uniques",
-                formatter=StringFormatter(text_align="center")),
-    TableColumn(field="hwy", title="Rating",
-                formatter=NumberFormatter(text_align="right")),
-]
-table = DataTable(source=source, columns=columns, height=210, width=330, name="table", sizing_mode="scale_both")
-
-curdoc().add_root(table)
-
-# Setup
-
-curdoc().title = "Bokeh Sample App Dashboard"
-curdoc().template_variables['stats_names'] = ['users', 'new_users', 'time', 'sessions', 'sales']
-curdoc().template_variables['stats'] = {
-    'users'     : {'icon': 'user',        'value': 11200, 'change':  4   , 'label': 'Total Users'},
-    'new_users' : {'icon': 'user',        'value': 350,   'change':  1.2 , 'label': 'New Users'},
-    'time'      : {'icon': 'clock-o',     'value': 5.6,   'change': -2.3 , 'label': 'Total Time'},
-    'sessions'  : {'icon': 'user',        'value': 27300, 'change':  0.5 , 'label': 'Total Sessions'},
-    'sales'     : {'icon': 'dollar-sign', 'value': 8700,  'change': -0.2 , 'label': 'Average Sales'},
-}
+# show(plot)
