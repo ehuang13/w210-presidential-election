@@ -2,7 +2,8 @@
 import geopandas as gpd
 import pandas as pd
 import json
-from bokeh.io import show
+
+from bokeh.io import show, curdoc
 from bokeh.models import (CDSView, ColorBar, ColumnDataSource,
                           CustomJS, CustomJSFilter,
                           GeoJSONDataSource, HoverTool,
@@ -10,9 +11,9 @@ from bokeh.models import (CDSView, ColorBar, ColumnDataSource,
 from bokeh.layouts import column, row, widgetbox
 from bokeh.palettes import brewer
 from bokeh.plotting import figure
+from bokeh.transform import cumsum
 
-# set pandas to display all columns in dataframe
-pd.set_option("display.max_columns", None)
+# plot counties US map visualization
 
 # read in combined dataset
 combined_df = pd.read_csv("https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/data/combined_jun13.csv")
@@ -29,7 +30,6 @@ merged_counties = counties_usa.merge(combined_df, left_on="GEOID", right_on="FIP
 # drop Alaska and Hawaii
 merged_counties = merged_counties.loc[~merged_counties["STATE"].isin(["Alaska", "Hawaii"])]
 
-# plot counties with bokeh
 # create 2000 election year data frame
 yr2000 = merged_counties["YEAR"] == 2000
 merged_2000 = merged_counties[yr2000]
@@ -71,11 +71,15 @@ counties = plot.patches("xs","ys", source = geosource_2000,
                    line_color = "gray",
                    line_width = 0.25,
                    fill_alpha = 1)
+
 # create hover tool
 plot.add_tools(HoverTool(renderers = [counties],
                       tooltips = [("County","@NAME"),
                                ("Votes", "@COUNTY_TOTALVOTES")]))
+
 # specify colorbar layout
 plot.add_layout(color_bar, "below")
 
-show(plot)
+curdoc().add_root(plot)
+
+# show(plot)
