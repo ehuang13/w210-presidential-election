@@ -14,18 +14,24 @@ from bokeh.plotting import figure
 from bokeh.transform import cumsum
 from bokeh.embed import components
 
+import sys
+
 # starting Flask app
 from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/xyz")
 def chart():
+    print("hello there", file=sys.stderr)
     plot = create_chart()
-    # script, div = components(plot)
-    text = print("hello hello testing")
-    # return render_template("index.html", the_div=div, the_script=script)
-    return text
+    script, div = components(plot)
+    print("script=" + script, file=sys.stderr)
+    print("div=" + div, file=sys.stderr)
+
+    return render_template("index.html", count="5", the_div=div, the_script=script)
+    # text = print("hello hello testing")
+    # return text
 
 # plot counties US map visualization
 def create_chart():
@@ -96,3 +102,13 @@ def create_chart():
     plot.add_layout(color_bar, "below")
 
     return plot
+
+if __name__ == '__main__':
+    # This is used when running locally only. When deploying to Google App
+    # Engine, a webserver process such as Gunicorn will serve the app. This
+    # can be configured by adding an `entrypoint` to app.yaml.
+    # Flask's development server will automatically serve static files in
+    # the "static" directory. See:
+    # http://flask.pocoo.org/docs/1.0/quickstart/#static-files. Once deployed,
+    # App Engine itself will serve those files as configured in app.yaml.
+    app.run(host='127.0.0.1', port=8080, debug=True)
