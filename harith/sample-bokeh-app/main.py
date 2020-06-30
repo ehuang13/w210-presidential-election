@@ -21,13 +21,11 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route("/xyz")
+@app.route("/")
 def chart():
-    print("hello there", file=sys.stderr)
+    #print("hello there", file=sys.stderr)
     plot = create_chart()
     script, div = components(plot)
-    print("script=" + script, file=sys.stderr)
-    print("div=" + div, file=sys.stderr)
 
     return render_template("index.html", count="5", the_div=div, the_script=script)
     # text = print("hello hello testing")
