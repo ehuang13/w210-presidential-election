@@ -7,19 +7,29 @@
   <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-0.12.14.min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.12.14.min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-tables-0.12.14.min.css" type="text/css">
-
-
-</head>
-
-<body>
-  <h1>Votes by County: {{ count }}</h1>
-  {{ the_div|safe }}
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" >
   <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js"></script>
   <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.0.2.min.js"></script>
   <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js"></script>
   <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js"></script>
-  {{ the_script|safe }}
 
+</head>
+
+<body>
+  <div>
+    <div>
+      <h1>Votes by County: {{ count }}</h1>
+      {{ map_div|safe }}
+      
+      {{ map_script|safe }}
+    </div>
+    <div>
+      <h2>Twitter - Analysis</h2>
+      {{ twt_div|safe }}
+      
+      {{ twt_script|safe }}
+    </div>
+  </div>
 </body>
 
 </html>
