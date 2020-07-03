@@ -70,18 +70,18 @@ def get_candidate_election_yearmonth_sent_plot():
 
 
 def get_candidate_economy_party_env_sent_plot():
-    df_trump_econ = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/economy/trump/2020_trump economy.csv')
-    df_biden_econ = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/economy/biden/2020_biden economy.csv')
+    df_trump_econ = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/economy/trump/2020_trump_economy.csv')
+    df_biden_econ = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/economy/biden/2020_biden_economy.csv')
 
     plot_econ = plot_chart(df_trump_econ, df_biden_econ, 'Trump', 'Biden', "Economy ")
 
-    df_trump_party = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/party/trump/2020_trump republican.csv')
-    df_biden_party = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/party/biden/2020_biden democrat.csv')
+    df_trump_party = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/party/trump/2020_trump_republican.csv')
+    df_biden_party = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/party/biden/2020_biden_democrat.csv')
 
     plot_party = plot_chart(df_trump_party, df_biden_party, 'Trump', 'Biden', "Party ")
 
-    df_trump_env = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/environment/trump/2020_trump environment.csv')
-    df_biden_env = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/environment/biden/2020_biden environment.csv')
+    df_trump_env = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/environment/trump/2020_trump_environment.csv')
+    df_biden_env = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/environment/biden/2020_biden_environment.csv')
 
     plot_env = plot_chart(df_trump_env, df_biden_env, 'Trump', 'Biden', "Environ ")
 
@@ -95,18 +95,18 @@ def get_candidate_economy_party_env_sent_plot():
 
 
 def get_candidate_health_imm_job_sent_plot():
-    df_trump_health = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/health/trump/2020_trump health.csv')
-    df_biden_health = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/health/biden/2020_biden health.csv')
+    df_trump_health = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/health/trump/2020_trump_health.csv')
+    df_biden_health = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/health/biden/2020_biden_health.csv')
 
     plot_health = plot_chart(df_trump_health, df_biden_health, 'Trump', 'Biden', "Health ")
 
-    df_trump_imm = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/immigration/trump/2020_trump immigration.csv')
-    df_biden_imm = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/immigration/biden/2020_biden immigration.csv')
+    df_trump_imm = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/immigration/trump/2020_trump_immigration.csv')
+    df_biden_imm = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/immigration/biden/2020_biden_immigration.csv')
 
     plot_imm = plot_chart(df_trump_imm, df_biden_imm, 'Trump', 'Biden', "Immi ")
 
-    df_trump_job = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/job/trump/2020_trump job.csv')
-    df_biden_job = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/job/biden/2020_biden job.csv')
+    df_trump_job = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/job/trump/2020_trump_job.csv')
+    df_biden_job = get_plot_data('https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/rishi/twitter2/twtsentdata/job/biden/2020_biden_job.csv')
 
     plot_job = plot_chart(df_trump_job, df_biden_job, 'Trump', 'Biden', "Job ")
 
