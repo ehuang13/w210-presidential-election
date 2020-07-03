@@ -8,11 +8,7 @@
   <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.12.14.min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-tables-0.12.14.min.css" type="text/css">
   <link rel="icon" href="https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/harith/sample-bokeh-app/static/favicon.ico" >
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js"></script>
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.0.2.min.js"></script>
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js"></script>
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js"></script>
-
+  
 </head>
 
 <body>
@@ -20,7 +16,10 @@
     <div>
       <h1>Votes by County: {{ count }}</h1>
       {{ map_div|safe }}
-      
+      <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js"></script>
       {{ map_script|safe }}
     </div>
     <div>
