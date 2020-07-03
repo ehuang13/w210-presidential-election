@@ -3,8 +3,9 @@
 #numpy==1.18.1
 
 Flask==1.0.2
-Bokeh==1.4.0
+Bokeh==2.1.1
 gunicorn==19.9.0
 Numpy==1.17.0
 requests==2.21.0
 pandas==0.25.3
+geopandas==0.8.0
