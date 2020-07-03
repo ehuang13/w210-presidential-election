@@ -4,23 +4,10 @@ from bokeh.io import output_notebook, show
 from bokeh.plotting import figure, output_file, show
 from bokeh.layouts import row
 
-def get_and_clean_data(path):
-    data = pd.read_csv(path)
-    data['date'] = pd.to_datetime(data['created_at'].astype(str), errors='coerce')
-    return data
-
-def get_mean_scores_by_date(df):
-    df['date'] = df['date'].dt.date
-    df2 = df.groupby('date')['scores'].mean().to_frame().reset_index()
-    return df2
-
-def get_plot_data(path):
-    df = get_and_clean_data(path)
-    df = get_mean_scores_by_date(df)
-    
-    return df[['date', 'scores']]
-
 def plot_chart(rep_df, dem_df, rep_cand, dem_cand, title):
+    
+    rep_df['date'] = pd.to_datetime(rep_df['date'].astype(str), errors='coerce')
+    dem_df['date'] = pd.to_datetime(dem_df['date'].astype(str), errors='coerce')
     
     title = title + '| ' + rep_cand + ': ' + str(round(rep_df["scores"].mean(), 4)) + ' & ' + dem_cand + ': ' + str(round(dem_df["scores"].mean(), 4))
     
@@ -29,7 +16,7 @@ def plot_chart(rep_df, dem_df, rep_cand, dem_cand, title):
     p.ygrid.grid_line_alpha=0.5
     p.xaxis.axis_label = 'Date'
     p.yaxis.axis_label = 'Sentiment Score'
-
+    
     p.line(rep_df.date, rep_df.scores, line_color="red", 
            line_width=1, line_alpha=0.6)
     p.circle(rep_df.date, rep_df.scores, fill_color="red", size=5, color="red")
@@ -45,21 +32,21 @@ def plot_chart(rep_df, dem_df, rep_cand, dem_cand, title):
     p.toolbar_location = None
     
     return p
-
+    
 def get_candidate_election_yearmonth_sent_plot():
 
-    df_trump = get_plot_data('data/twtsentdata/candidate/2020/trump/2020_trump.csv')
-    df_biden = get_plot_data('data/twtsentdata/candidate/2020/biden/2020_biden.csv')
+    df_trump = pd.read_csv('data/twtsentdata/candidate/2020/trump/2020_trump.csv')
+    df_biden = pd.read_csv('data/twtsentdata/candidate/2020/biden/2020_biden.csv')
 
     p_2020_cand = plot_chart(df_trump, df_biden, 'Trump', 'Biden', "2020 ")
 
-    df_trump_16 = get_plot_data('data/twtsentdata/candidate/2016/trump/2016_trump.csv')
-    df_hillary = get_plot_data('data/twtsentdata/candidate/2016/hillary/2016_hillary.csv')
+    df_trump_16 = pd.read_csv('data/twtsentdata/candidate/2016/trump/2016_trump.csv')
+    df_hillary = pd.read_csv('data/twtsentdata/candidate/2016/hillary/2016_hillary.csv')
 
     p_2016_cand = plot_chart(df_trump_16, df_hillary, 'Trump', 'Hillary', "2016 ")
 
-    df_obama = get_plot_data('data/twtsentdata/candidate/2012/obama/2012_obama.csv')
-    df_romney = get_plot_data('data/twtsentdata/candidate/2012/romney/2012_romney.csv')
+    df_obama = pd.read_csv('data/twtsentdata/candidate/2012/obama/2012_obama.csv')
+    df_romney = pd.read_csv('data/twtsentdata/candidate/2012/romney/2012_romney.csv')
 
     p_2012_cand = plot_chart(df_obama, df_romney, 'Romney', 'Obama', "2012 ")
 
@@ -70,18 +57,18 @@ def get_candidate_election_yearmonth_sent_plot():
 
 
 def get_candidate_economy_party_env_sent_plot():
-    df_trump_econ = get_plot_data('data/twtsentdata/economy/trump/2020_trump_economy.csv')
-    df_biden_econ = get_plot_data('data/twtsentdata/economy/biden/2020_biden_economy.csv')
+    df_trump_econ = pd.read_csv('data/twtsentdata/economy/trump/2020_trump_economy.csv')
+    df_biden_econ = pd.read_csv('data/twtsentdata/economy/biden/2020_biden_economy.csv')
 
     plot_econ = plot_chart(df_trump_econ, df_biden_econ, 'Trump', 'Biden', "Economy ")
 
-    df_trump_party = get_plot_data('data/twtsentdata/party/trump/2020_trump_republican.csv')
-    df_biden_party = get_plot_data('data/twtsentdata/party/biden/2020_biden_democrat.csv')
+    df_trump_party = pd.read_csv('data/twtsentdata/party/trump/2020_trump_republican.csv')
+    df_biden_party = pd.read_csv('data/twtsentdata/party/biden/2020_biden_democrat.csv')
 
     plot_party = plot_chart(df_trump_party, df_biden_party, 'Trump', 'Biden', "Party ")
 
-    df_trump_env = get_plot_data('data/twtsentdata/environment/trump/2020_trump_environment.csv')
-    df_biden_env = get_plot_data('data/twtsentdata/environment/biden/2020_biden_environment.csv')
+    df_trump_env = pd.read_csv('data/twtsentdata/environment/trump/2020_trump_environment.csv')
+    df_biden_env = pd.read_csv('data/twtsentdata/environment/biden/2020_biden_environment.csv')
 
     plot_env = plot_chart(df_trump_env, df_biden_env, 'Trump', 'Biden', "Environ ")
 
@@ -95,18 +82,18 @@ def get_candidate_economy_party_env_sent_plot():
 
 
 def get_candidate_health_imm_job_sent_plot():
-    df_trump_health = get_plot_data('data/twtsentdata/health/trump/2020_trump_health.csv')
-    df_biden_health = get_plot_data('data/twtsentdata/health/biden/2020_biden_health.csv')
+    df_trump_health = pd.read_csv('data/twtsentdata/health/trump/2020_trump_health.csv')
+    df_biden_health = pd.read_csv('data/twtsentdata/health/biden/2020_biden_health.csv')
 
     plot_health = plot_chart(df_trump_health, df_biden_health, 'Trump', 'Biden', "Health ")
 
-    df_trump_imm = get_plot_data('data/twtsentdata/immigration/trump/2020_trump_immigration.csv')
-    df_biden_imm = get_plot_data('data/twtsentdata/immigration/biden/2020_biden_immigration.csv')
+    df_trump_imm = pd.read_csv('data/twtsentdata/immigration/trump/2020_trump_immigration.csv')
+    df_biden_imm = pd.read_csv('data/twtsentdata/immigration/biden/2020_biden_immigration.csv')
 
     plot_imm = plot_chart(df_trump_imm, df_biden_imm, 'Trump', 'Biden', "Immi ")
 
-    df_trump_job = get_plot_data('data/twtsentdata/job/trump/2020_trump_job.csv')
-    df_biden_job = get_plot_data('data/twtsentdata/job/biden/2020_biden_job.csv')
+    df_trump_job = pd.read_csv('data/twtsentdata/job/trump/2020_trump_job.csv')
+    df_biden_job = pd.read_csv('data/twtsentdata/job/biden/2020_biden_job.csv')
 
     plot_job = plot_chart(df_trump_job, df_biden_job, 'Trump', 'Biden', "Job ")
 
