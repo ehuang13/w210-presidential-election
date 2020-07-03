@@ -24,11 +24,23 @@
       {{ map_script|safe }}
     </div>
     <div>
-      <h2>Twitter - Analysis</h2>
-      {{ twt_div|safe }}
-      
-      {{ twt_script|safe }}
+      <h3>Twitter Sentiment by Candidate and Election Year/Month</h3>
+      {{ twt_ey_div|safe }}
+
+      {{ twt_ey_script|safe }}
     </div>
+    <div>
+        <h3>Twitter Sentiment by Candidate and Economy/Party/Environment</h3>
+        {{ twt_epe_div|safe }}
+  
+        {{ twt_epe_script|safe }}
+    </div>
+    <div>
+        <h3>Twitter Sentiment by Candidate and Health/Immigration/Job</h3>
+        {{ twt_hij_div|safe }}
+  
+        {{ twt_hij_script|safe }}
+      </div>
   </div>
 </body>
 

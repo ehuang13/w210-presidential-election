@@ -20,8 +20,18 @@ def chart():
     plot = emap.create_chart()
     script, div = components(plot)
 
+    twtplot_ey = twt.get_candidate_election_yearmonth_sent_plot()
+    twtscript_ey, twtdiv_ey = components(twtplot_ey)
+    twtplot_epe = twt.get_candidate_economy_party_env_sent_plot()
+    twtscript_epe, twtdiv_epe = components(twtplot_epe)
+    twtplot_hij = twt.get_candidate_health_imm_job_sent_plot()
+    twtscript_hij, twtdiv_hij = components(twtplot_hij)
+
     return render_template("index.html", count="5", 
-        map_div=div, map_script=script, twt_div=div, twt_script=script)
+        map_div=div, map_script=script, 
+        twtdiv_ey=twtdiv_ey, twtscript_ey=twtscript_ey,
+        twtdiv_epe=twtdiv_epe, twtscript_epe=twtscript_epe,
+        twtdiv_hij=twtdiv_hij, twtscript_hij=twtscript_hij)
     # text = print("hello hello testing")
     # return text
 
