@@ -7,7 +7,7 @@ from bokeh.embed import components
 
 import electmap as emap
 import twtanalysis as twt
-
+import electmapslider as mslider
 
 # starting Flask app
 from flask import Flask, render_template
@@ -17,7 +17,10 @@ app = Flask(__name__)
 @app.route("/")
 def chart():
     #print("hello there", file=sys.stderr)
-    plot = emap.create_chart()
+    #plot = emap.create_chart()
+    #script, div = components(plot)
+
+    plot = mslider.get_electmap_with_controls()
     script, div = components(plot)
 
     twtplot_ey = twt.get_candidate_election_yearmonth_sent_plot()
