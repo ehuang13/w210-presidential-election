@@ -5,3 +5,4 @@ data2/
 data3/
 .ipynb_checkpoints
 env/
+.history/
