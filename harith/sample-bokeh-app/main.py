@@ -20,21 +20,35 @@ def chart():
     plot = emap.create_chart()
     script, div = components(plot)
 
-    #twtplot_ey = twt.get_candidate_election_yearmonth_sent_plot()
-    #twtscript_ey, twtdiv_ey = components(twtplot_ey)
-    #twtplot_epe = twt.get_candidate_economy_party_env_sent_plot()
-    #twtscript_epe, twtdiv_epe = components(twtplot_epe)
-    #twtplot_hij = twt.get_candidate_health_imm_job_sent_plot()
-    #twtscript_hij, twtdiv_hij = components(twtplot_hij)
+    twtplot_ey = twt.get_candidate_election_yearmonth_sent_plot()
+    twtscript_ey, twtdiv_ey = components(twtplot_ey)
+    
+    twtplot_p = twt.get_candidate_party_plot()
+    twtscript_p, twtdiv_p = components(twtplot_p)
+    twtplot_ec = twt.get_candidate_economy_plot()
+    twtscript_ec, twtdiv_ec = components(twtplot_ec)
+    twtplot_en = twt.get_candidate_env_plot()
+    twtscript_en, twtdiv_en = components(twtplot_en)
 
-    #return render_template("index.html", count="5", 
-    #    map_div=div, map_script=script, 
-    #    twtdiv_ey=twtdiv_ey, twtscript_ey=twtscript_ey,
-    #    twtdiv_epe=twtdiv_epe, twtscript_epe=twtscript_epe,
-    #    twtdiv_hij=twtdiv_hij, twtscript_hij=twtscript_hij)
+    twtplot_h = twt.get_candidate_health_plot()
+    twtscript_h, twtdiv_h = components(twtplot_h)
+    twtplot_i = twt.get_candidate_imm_plot()
+    twtscript_i, twtdiv_i = components(twtplot_i)
+    twtplot_j = twt.get_candidate_job_plot()
+    twtscript_j, twtdiv_j = components(twtplot_j)
 
     return render_template("index.html", count="5", 
-        map_div=div, map_script=script)
+        map_div=div, map_script=script, 
+        twtdiv_ey=twtdiv_ey, twtscript_ey=twtscript_ey,
+        twtdiv_p=twtdiv_p, twtscript_p=twtscript_p,
+        twtdiv_ec=twtdiv_ec, twtscript_ec=twtscript_ec,
+        twtdiv_en=twtdiv_en, twtscript_en=twtscript_en,
+        twtdiv_h=twtdiv_h, twtscript_h=twtscript_h,
+        twtdiv_i=twtdiv_i, twtscript_i=twtscript_i,
+        twtdiv_j=twtdiv_j, twtscript_j=twtscript_j)
+
+    #return render_template("index.html", count="5", 
+    #    map_div=div, map_script=script)
 
     # text = print("hello hello testing")
     # return text

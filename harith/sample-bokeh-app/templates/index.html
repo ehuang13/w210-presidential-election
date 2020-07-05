@@ -2,13 +2,17 @@
 <html>
 
 <head>
-  <title> Sample Bokeh Visualization </title>
+  <title> Presidential Election Forecast </title>
 
   <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-0.12.14.min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.12.14.min.css" type="text/css" />
   <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-tables-0.12.14.min.css" type="text/css">
   <link rel="icon" href="https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/harith/sample-bokeh-app/static/favicon.ico" >
-  
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js"></script>
 </head>
 
 <body>
@@ -16,30 +20,150 @@
     <div>
       <h1>Votes by County: {{ count }}</h1>
       {{ map_div|safe }}
-      <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js"></script>
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.0.2.min.js"></script>
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js"></script>
-  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js"></script>
+      
       {{ map_script|safe }}
     </div>
-    <div>
-      <h3>Twitter Sentiment by Candidate and Election Year/Month</h3>
-      {{ twtdiv_ey|safe }}
+    <div style="margin: 10px">
+      <hr style="height:10px;border-width:0;color:gray;background-color:gray">
+    </div>
+    <div style="width: 90%; margin-left: 50px;background: #303030;
+    color: #DFDFDF;">
+      <center>
+        <h3>Twitter Sentiment by Candidate and Election Month</h3>
+        {{ twtdiv_ey|safe }}
 
-      {{ twtscript_ey|safe }}
+        {{ twtscript_ey|safe }}
+        <p>* Sentiments are scaled from 1 (neg) to 5 (pos) and each label shows mean sentiment by each candidate</p>
+      </center>
     </div>
-    <div>
-        <h3>Twitter Sentiment by Candidate and Economy/Party/Environment</h3>
-        {{ twtdiv_epe|safe }}
+   
+  </div>
+  <div>
+    <ul class="tabs">
+    
+      <li class="tab">
+          <input type="radio" name="tabs" checked="checked" id="tab1" />
+          <label for="tab1">Economy</label>
+          <div id="tab-content1" class="content">
+            <h1>Economy</h1>
+            <hr/>
+            <h3>Candidate - Economy</h3>
+            <br/>
+            <div >
+              <div >
+                <p>Twitter & News Media Sentiment by Candidate and Economy</p>
+                <div>
+                    {{ twtdiv_ec|safe }}
+              
+                    {{ twtscript_ec|safe }}
+                </div>
+              </div>
+              <br/>
+              <hr/>
+              <h3>States Vulnerable To Economy</h3>
+              <br/>
+              <div >
+                  <img src="{{ url_for('static', filename='images/OH.png') }}" 
+                  width="70" style=" margin: 10px;"/> 
+                  
+                  <img src="{{ url_for('static', filename='images/PA.png') }}" 
+                  width="70" style=" margin: 10px;"/> 
+                  <img src="{{ url_for('static', filename='images/MI.png') }}" 
+                  width="70" style=" margin: 10px;"/> 
+              </div>
+            </div>
+            
+          </div>
+      </li>
+      
+      <li class="tab">
+        <input type="radio" name="tabs" id="tab2" />
+        <label for="tab2">Party</label>   
+        <div id="tab-content2" class="content">
+            <h1>Party</h1>
+            <hr/>
+            <h3>Candidate - Party</h3>
+            <br/>
+            <p>Twitter & News Media Sentiment by Candidate and Party</p>    
+
+            <div>
+                {{ twtdiv_p|safe }}
+          
+                {{ twtscript_p|safe }}
+            </div>
+          </div>
+      </li>
   
-        {{ twtscript_epe|safe }}
-    </div>
-    <div>
-        <h3>Twitter Sentiment by Candidate and Health/Immigration/Job</h3>
-        {{ twtdiv_hij|safe }}
+       <li class="tab">
+        <input type="radio" name="tabs" id="tab3" />
+        <label for="tab3">Environment</label>   
+        <div id="tab-content3" class="content">
+            <h1>Environment</h1>
+            <hr/>
+            <h3>Candidate - Environment</h3>
+            <br/>
+            <p>Twitter & News Media Sentiment by Candidate and Environment</p>
+            <div>
+                {{ twtdiv_en|safe }}
+          
+                {{ twtscript_en|safe }}
+            </div>
+        </div>
+      </li>
   
-        {{ twtscript_hij|safe }}
-      </div>
+      <li class="tab">
+        <input type="radio" name="tabs" id="tab4" />
+        <label for="tab4">Health</label>   
+        <div id="tab-content4" class="content">
+            <h1>Health</h1>
+            <hr/>
+            <h3>Candidate - Health</h3>
+            <br/>
+            <p>Twitter & News Media Sentiment by Candidate and Health</p>
+            <div>
+                {{ twtdiv_h|safe }}
+          
+                {{ twtscript_h|safe }}
+            </div>       
+        </div>
+      </li>
+      <li class="tab">
+          <input type="radio" name="tabs" id="tab5" />
+          <label for="tab5">Immigration</label>   
+          <div id="tab-content5" class="content">
+              <h1>Immigration</h1>
+              <hr/>
+              <h3>Candidate - Immigration</h3>
+              <br/>
+              <p>Twitter & News Media Sentiment by Candidate and Immigration</p>
+              <div>
+                  {{ twtdiv_i|safe }}
+            
+                  {{ twtscript_i|safe }}
+              </div>       
+          </div>
+        </li>
+        <li class="tab">
+            <input type="radio" name="tabs" id="tab6" />
+            <label for="tab6">Job</label>   
+            <div id="tab-content6" class="content">
+                <h1>Job</h1>
+                <hr/>
+                <h3>Candidate - Job</h3>
+                <br/>
+                <p>Twitter & News Media Sentiment by Candidate and Job</p>
+                <div>
+                    {{ twtdiv_j|safe }}
+              
+                    {{ twtscript_j|safe }}
+                </div>       
+            </div>
+          </li>
+      
+    </ul>
+    
+  
+  
   </div>
 </body>
 
