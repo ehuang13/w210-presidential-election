@@ -46,8 +46,7 @@ h1, h3{
     position: absolute;
     top: 27px;
     left: 0;
-    background: #303030;
-    color: #DFDFDF;
+    color: black;
     
     opacity:0;
     transition: opacity 400ms ease-out;
@@ -55,7 +54,7 @@ h1, h3{
 
 .tabs>.tab>[id^="tab"]:checked + label {
     top: 0;
-    background: #303030;
+    
     color: #F5F5F5;
 }
 
