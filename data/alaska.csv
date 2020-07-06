@@ -1,0 +1,146 @@
+year,state,state_po,county,FIPS,republican_candidate,democrat_candidate,republican_votes,democrat_votes,county_totalvotes,winning candidate,winning party
+2000,Alaska,AK,Aleutians East,,George W. Bush,Al Gore,447,112,610,George W. Bush,republican
+2000,Alaska,AK,Aleutians West,,George W. Bush,Al Gore,704,514,1375,George W. Bush,republican
+2000,Alaska,AK,Anchorage,,George W. Bush,Al Gore,67883,34714,118884,George W. Bush,republican
+2000,Alaska,AK,Bethel,2050,George W. Bush,Al Gore,2025,2232,4810,Al Gore,democrat
+2000,Alaska,AK,Bristol Bay,2060,George W. Bush,Al Gore,383,202,701,George W. Bush,republican
+2000,Alaska,AK,Denali,2068,George W. Bush,Al Gore,698,306,1263,George W. Bush,republican
+2000,Alaska,AK,Dillingham,2070,George W. Bush,Al Gore,891,592,1653,George W. Bush,republican
+2000,Alaska,AK,Fairbanks North Star,2090,George W. Bush,Al Gore,25527,10501,41507,George W. Bush,republican
+2000,Alaska,AK,Haines,2100,George W. Bush,Al Gore,742,339,1341,George W. Bush,republican
+2000,Alaska,AK,Hoonah-Angoon,2105,George W. Bush,Al Gore,594,539,1345,George W. Bush,republican
+2000,Alaska,AK,Juneau,2110,George W. Bush,Al Gore,7270,6403,16048,George W. Bush,republican
+2000,Alaska,AK,Kenai Peninsula,2122,George W. Bush,Al Gore,15053,4633,23520,George W. Bush,republican
+2000,Alaska,AK,Ketchikan Gateway,2130,George W. Bush,Al Gore,4679,1285,6656,George W. Bush,republican
+2000,Alaska,AK,Kodiak Island,2150,George W. Bush,Al Gore,3861,1543,6100,George W. Bush,republican
+2000,Alaska,AK,Lake and Peninsula,2164,George W. Bush,Al Gore,297,197,540,George W. Bush,republican
+2000,Alaska,AK,Matanuska-Susitna,2170,George W. Bush,Al Gore,17976,5379,27445,George W. Bush,republican
+2000,Alaska,AK,Nome,2180,George W. Bush,Al Gore,1637,1217,3178,George W. Bush,republican
+2000,Alaska,AK,North Slope,2185,George W. Bush,Al Gore,1485,843,2561,George W. Bush,republican
+2000,Alaska,AK,Northwest Arctic,2188,George W. Bush,Al Gore,1081,818,2124,George W. Bush,republican
+2000,Alaska,AK,Petersburg,2195,George W. Bush,Al Gore,1125,403,1758,George W. Bush,republican
+2000,Alaska,AK,Prince of Wales-Hyder,2198,George W. Bush,Al Gore,1785,778,2903,George W. Bush,republican
+2000,Alaska,AK,Sitka,2220,George W. Bush,Al Gore,2067,1484,4288,George W. Bush,republican
+2000,Alaska,AK,Skagway,2230,George W. Bush,Al Gore,247,156,495,George W. Bush,republican
+2000,Alaska,AK,Southeast Fairbanks,2240,George W. Bush,Al Gore,2128,471,2887,George W. Bush,republican
+2000,Alaska,AK,Valdez-Cordova,2261,George W. Bush,Al Gore,3209,1090,5070,George W. Bush,republican
+2000,Alaska,AK,Kusilvak,,George W. Bush,Al Gore,960,831,1964,George W. Bush,republican
+2000,Alaska,AK,Wrangell,2275,George W. Bush,Al Gore,1041,195,1342,George W. Bush,republican
+2000,Alaska,AK,Yakutat,2282,George W. Bush,Al Gore,177,118,354,George W. Bush,republican
+2000,Alaska,AK,Yukon-Koyukuk,2290,George W. Bush,Al Gore,1357,1138,2839,George W. Bush,republican
+2004,Alaska,AK,Aleutians East,,George W. Bush,John Kerry,315,98,422,George W. Bush,republican
+2004,Alaska,AK,Aleutians West,,George W. Bush,John Kerry,508,455,996,George W. Bush,republican
+2004,Alaska,AK,Anchorage,,George W. Bush,John Kerry,54286,32216,88994,George W. Bush,republican
+2004,Alaska,AK,Bethel,2050,George W. Bush,John Kerry,1935,1832,3948,George W. Bush,republican
+2004,Alaska,AK,Bristol Bay,2060,George W. Bush,John Kerry,285,122,418,George W. Bush,republican
+2004,Alaska,AK,Denali,2068,George W. Bush,John Kerry,467,309,818,George W. Bush,republican
+2004,Alaska,AK,Dillingham,2070,George W. Bush,John Kerry,797,521,1363,George W. Bush,republican
+2004,Alaska,AK,Fairbanks North Star,2090,George W. Bush,John Kerry,20268,10103,31472,George W. Bush,republican
+2004,Alaska,AK,Haines,2100,George W. Bush,John Kerry,561,420,1026,George W. Bush,republican
+2004,Alaska,AK,Hoonah-Angoon,2105,George W. Bush,John Kerry,463,494,1011,John Kerry,democrat
+2004,Alaska,AK,Juneau,2110,George W. Bush,John Kerry,5515,5784,11685,John Kerry,democrat
+2004,Alaska,AK,Kenai Peninsula,2122,George W. Bush,John Kerry,10478,4648,15757,George W. Bush,republican
+2004,Alaska,AK,Ketchikan Gateway,2130,George W. Bush,John Kerry,3170,1343,4696,George W. Bush,republican
+2004,Alaska,AK,Kodiak Island,2150,George W. Bush,John Kerry,2698,1349,4202,George W. Bush,republican
+2004,Alaska,AK,Lake and Peninsula,2164,George W. Bush,John Kerry,224,114,355,George W. Bush,republican
+2004,Alaska,AK,Matanuska-Susitna,2170,George W. Bush,John Kerry,17569,6201,24606,George W. Bush,republican
+2004,Alaska,AK,Nome,2180,George W. Bush,John Kerry,1489,1171,2814,George W. Bush,republican
+2004,Alaska,AK,North Slope,2185,George W. Bush,John Kerry,1171,767,2030,George W. Bush,republican
+2004,Alaska,AK,Northwest Arctic,2188,George W. Bush,John Kerry,1123,801,1998,George W. Bush,republican
+2004,Alaska,AK,Petersburg,2195,George W. Bush,John Kerry,753,452,1263,George W. Bush,republican
+2004,Alaska,AK,Prince of Wales-Hyder,2198,George W. Bush,John Kerry,1182,678,1954,George W. Bush,republican
+2004,Alaska,AK,Sitka,2220,George W. Bush,John Kerry,1726,1737,3627,John Kerry,democrat
+2004,Alaska,AK,Skagway,2230,George W. Bush,John Kerry,165,207,401,John Kerry,democrat
+2004,Alaska,AK,Southeast Fairbanks,2240,George W. Bush,John Kerry,1668,414,2166,George W. Bush,republican
+2004,Alaska,AK,Valdez-Cordova,2261,George W. Bush,John Kerry,2339,1152,3644,George W. Bush,republican
+2004,Alaska,AK,Kusilvak,,George W. Bush,John Kerry,842,753,1697,George W. Bush,republican
+2004,Alaska,AK,Wrangell,2275,George W. Bush,John Kerry,693,164,890,George W. Bush,republican
+2004,Alaska,AK,Yakutat,2282,George W. Bush,John Kerry,132,105,245,George W. Bush,republican
+2004,Alaska,AK,Yukon-Koyukuk,2290,George W. Bush,John Kerry,1988,1215,3346,George W. Bush,republican
+2008,Alaska,AK,Aleutians East,,John McCain,Barack Obama,447,205,676,John McCain,republican
+2008,Alaska,AK,Aleutians West,,John McCain,Barack Obama,685,648,1378,John McCain,republican
+2008,Alaska,AK,Anchorage,,John McCain,Barack Obama,76720,55244,135070,John McCain,republican
+2008,Alaska,AK,Bethel,2050,John McCain,Barack Obama,2250,2695,5173,Barack Obama,democrat
+2008,Alaska,AK,Bristol Bay,2060,John McCain,Barack Obama,367,142,524,John McCain,republican
+2008,Alaska,AK,Denali,2068,John McCain,Barack Obama,668,554,1260,John McCain,republican
+2008,Alaska,AK,Dillingham,2070,John McCain,Barack Obama,1085,851,1983,John McCain,republican
+2008,Alaska,AK,Fairbanks North Star,2090,John McCain,Barack Obama,27302,15893,44393,John McCain,republican
+2008,Alaska,AK,Haines,2100,John McCain,Barack Obama,787,696,1543,John McCain,republican
+2008,Alaska,AK,Hoonah-Angoon,2105,John McCain,Barack Obama,585,672,1309,Barack Obama,democrat
+2008,Alaska,AK,Juneau,2110,John McCain,Barack Obama,7124,9819,17503,Barack Obama,democrat
+2008,Alaska,AK,Kenai Peninsula,2122,John McCain,Barack Obama,18949,8362,28156,John McCain,republican
+2008,Alaska,AK,Ketchikan Gateway,2130,John McCain,Barack Obama,3833,2490,6519,John McCain,republican
+2008,Alaska,AK,Kodiak Island,2150,John McCain,Barack Obama,3979,2102,6276,John McCain,republican
+2008,Alaska,AK,Lake and Peninsula,2164,John McCain,Barack Obama,299,185,502,John McCain,republican
+2008,Alaska,AK,Matanuska-Susitna,2170,John McCain,Barack Obama,30246,9297,40598,John McCain,republican
+2008,Alaska,AK,Nome,2180,John McCain,Barack Obama,1618,1728,3443,Barack Obama,democrat
+2008,Alaska,AK,North Slope,2185,John McCain,Barack Obama,1252,1041,2376,John McCain,republican
+2008,Alaska,AK,Northwest Arctic,2188,John McCain,Barack Obama,1328,952,2368,John McCain,republican
+2008,Alaska,AK,Petersburg,2195,John McCain,Barack Obama,964,704,1721,John McCain,republican
+2008,Alaska,AK,Prince of Wales-Hyder,2198,John McCain,Barack Obama,1422,1170,2740,John McCain,republican
+2008,Alaska,AK,Sitka,2220,John McCain,Barack Obama,2129,2356,4628,Barack Obama,democrat
+2008,Alaska,AK,Skagway,2230,John McCain,Barack Obama,217,317,570,Barack Obama,democrat
+2008,Alaska,AK,Southeast Fairbanks,2240,John McCain,Barack Obama,2766,700,3573,John McCain,republican
+2008,Alaska,AK,Valdez-Cordova,2261,John McCain,Barack Obama,3322,1630,5110,John McCain,republican
+2008,Alaska,AK,Kusilvak,,John McCain,Barack Obama,906,1269,2271,Barack Obama,democrat
+2008,Alaska,AK,Wrangell,2275,John McCain,Barack Obama,858,356,1245,John McCain,republican
+2008,Alaska,AK,Yakutat,2282,John McCain,Barack Obama,170,188,373,Barack Obama,democrat
+2008,Alaska,AK,Yukon-Koyukuk,2290,John McCain,Barack Obama,1528,1292,2916,John McCain,republican
+2012,Alaska,AK,Aleutians East,,Mitt Romney,Barack Obama,292,234,549,Mitt Romney,republican
+2012,Alaska,AK,Aleutians West,,Mitt Romney,Barack Obama,426,778,1239,Barack Obama,democrat
+2012,Alaska,AK,Anchorage,,Mitt Romney,Barack Obama,66340,54073,125169,Mitt Romney,republican
+2012,Alaska,AK,Bethel,2050,Mitt Romney,Barack Obama,1150,3425,4811,Barack Obama,democrat
+2012,Alaska,AK,Bristol Bay,2060,Mitt Romney,Barack Obama,252,147,426,Mitt Romney,republican
+2012,Alaska,AK,Denali,2068,Mitt Romney,Barack Obama,474,407,923,Mitt Romney,republican
+2012,Alaska,AK,Dillingham,2070,Mitt Romney,Barack Obama,592,967,1639,Barack Obama,democrat
+2012,Alaska,AK,Fairbanks North Star,2090,Mitt Romney,Barack Obama,23756,14716,40539,Mitt Romney,republican
+2012,Alaska,AK,Haines,2100,Mitt Romney,Barack Obama,625,595,1310,Mitt Romney,republican
+2012,Alaska,AK,Hoonah-Angoon,2105,Mitt Romney,Barack Obama,453,743,1255,Barack Obama,democrat
+2012,Alaska,AK,Juneau,2110,Mitt Romney,Barack Obama,6108,9251,16116,Barack Obama,democrat
+2012,Alaska,AK,Kenai Peninsula,2122,Mitt Romney,Barack Obama,17157,7721,25995,Mitt Romney,republican
+2012,Alaska,AK,Ketchikan Gateway,2130,Mitt Romney,Barack Obama,3266,2262,5906,Mitt Romney,republican
+2012,Alaska,AK,Kodiak Island,2150,Mitt Romney,Barack Obama,3060,2078,5369,Mitt Romney,republican
+2012,Alaska,AK,Lake and Peninsula,2164,Mitt Romney,Barack Obama,143,212,372,Barack Obama,democrat
+2012,Alaska,AK,Matanuska-Susitna,2170,Mitt Romney,Barack Obama,27339,9317,38343,Mitt Romney,republican
+2012,Alaska,AK,Nome,2180,Mitt Romney,Barack Obama,1096,2264,3559,Barack Obama,democrat
+2012,Alaska,AK,North Slope,2185,Mitt Romney,Barack Obama,735,1407,2233,Barack Obama,democrat
+2012,Alaska,AK,Northwest Arctic,2188,Mitt Romney,Barack Obama,611,1309,2002,Barack Obama,democrat
+2012,Alaska,AK,Petersburg,2195,Mitt Romney,Barack Obama,867,777,1730,Mitt Romney,republican
+2012,Alaska,AK,Prince of Wales-Hyder,2198,Mitt Romney,Barack Obama,1045,1298,2482,Barack Obama,democrat
+2012,Alaska,AK,Sitka,2220,Mitt Romney,Barack Obama,1832,2340,4415,Barack Obama,democrat
+2012,Alaska,AK,Skagway,2230,Mitt Romney,Barack Obama,188,356,613,Barack Obama,democrat
+2012,Alaska,AK,Southeast Fairbanks,2240,Mitt Romney,Barack Obama,2249,680,3089,Mitt Romney,republican
+2012,Alaska,AK,Valdez-Cordova,2261,Mitt Romney,Barack Obama,2524,1577,4344,Mitt Romney,republican
+2012,Alaska,AK,Kusilvak,,Mitt Romney,Barack Obama,390,1716,2228,Barack Obama,democrat
+2012,Alaska,AK,Wrangell,2275,Mitt Romney,Barack Obama,738,362,1143,Mitt Romney,republican
+2012,Alaska,AK,Yakutat,2282,Mitt Romney,Barack Obama,122,171,305,Barack Obama,democrat
+2012,Alaska,AK,Yukon-Koyukuk,2290,Mitt Romney,Barack Obama,812,1472,2389,Barack Obama,democrat
+2016,Alaska,AK,Aleutians East,,Donald Trump,Hillary Clinton,305,172,547,Donald Trump,republican
+2016,Alaska,AK,Aleutians West,,Donald Trump,Hillary Clinton,404,699,1227,Hillary Clinton,democrat
+2016,Alaska,AK,Anchorage,,Donald Trump,Hillary Clinton,61473,54395,131072,Donald Trump,republican
+2016,Alaska,AK,Bethel,2050,Donald Trump,Hillary Clinton,1103,2719,4944,Hillary Clinton,democrat
+2016,Alaska,AK,Bristol Bay,2060,Donald Trump,Hillary Clinton,274,139,464,Donald Trump,republican
+2016,Alaska,AK,Denali,2068,Donald Trump,Hillary Clinton,589,395,1113,Donald Trump,republican
+2016,Alaska,AK,Dillingham,2070,Donald Trump,Hillary Clinton,660,992,1908,Hillary Clinton,democrat
+2016,Alaska,AK,Fairbanks North Star,2090,Donald Trump,Hillary Clinton,22196,13589,41180,Donald Trump,republican
+2016,Alaska,AK,Haines,2100,Donald Trump,Hillary Clinton,674,738,1655,Hillary Clinton,democrat
+2016,Alaska,AK,Hoonah-Angoon,2105,Donald Trump,Hillary Clinton,452,753,1431,Hillary Clinton,democrat
+2016,Alaska,AK,Juneau,2110,Donald Trump,Hillary Clinton,5734,8800,16573,Hillary Clinton,democrat
+2016,Alaska,AK,Kenai Peninsula,2122,Donald Trump,Hillary Clinton,18408,7578,29034,Donald Trump,republican
+2016,Alaska,AK,Ketchikan Gateway,2130,Donald Trump,Hillary Clinton,3492,1990,6337,Donald Trump,republican
+2016,Alaska,AK,Kodiak Island,2150,Donald Trump,Hillary Clinton,3072,2001,5818,Donald Trump,republican
+2016,Alaska,AK,Lake and Peninsula,2164,Donald Trump,Hillary Clinton,174,193,501,Hillary Clinton,democrat
+2016,Alaska,AK,Matanuska-Susitna,2170,Donald Trump,Hillary Clinton,31947,8598,45251,Donald Trump,republican
+2016,Alaska,AK,Nome,2180,Donald Trump,Hillary Clinton,935,1689,3292,Hillary Clinton,democrat
+2016,Alaska,AK,North Slope,2185,Donald Trump,Hillary Clinton,802,1090,2319,Hillary Clinton,democrat
+2016,Alaska,AK,Northwest Arctic,2188,Donald Trump,Hillary Clinton,563,1164,2183,Hillary Clinton,democrat
+2016,Alaska,AK,Petersburg,2195,Donald Trump,Hillary Clinton,928,577,1728,Donald Trump,republican
+2016,Alaska,AK,Prince of Wales-Hyder,2198,Donald Trump,Hillary Clinton,1311,1088,2863,Donald Trump,republican
+2016,Alaska,AK,Sitka,2220,Donald Trump,Hillary Clinton,1830,2135,4475,Hillary Clinton,democrat
+2016,Alaska,AK,Skagway,2230,Donald Trump,Hillary Clinton,232,449,839,Hillary Clinton,democrat
+2016,Alaska,AK,Southeast Fairbanks,2240,Donald Trump,Hillary Clinton,2441,669,3433,Donald Trump,republican
+2016,Alaska,AK,Valdez-Cordova,2261,Donald Trump,Hillary Clinton,2560,1269,4484,Donald Trump,republican
+2016,Alaska,AK,Kusilvak,,Donald Trump,Hillary Clinton,405,1215,2055,Hillary Clinton,democrat
+2016,Alaska,AK,Wrangell,2275,Donald Trump,Hillary Clinton,757,273,1132,Donald Trump,republican
+2016,Alaska,AK,Yakutat,2282,Donald Trump,Hillary Clinton,137,163,346,Hillary Clinton,democrat
+2016,Alaska,AK,Yukon-Koyukuk,2290,Donald Trump,Hillary Clinton,813,1557,2727,Hillary Clinton,democrat
