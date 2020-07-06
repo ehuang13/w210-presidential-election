@@ -120,7 +120,7 @@ def get_electmap_with_controls():
     geo_src = GeoJSONDataSource(geojson = make_dataset(merged_cnt_data, year_select.value, True))
     curr_geo_src = GeoJSONDataSource(geojson = make_dataset(merged_cnt_data, 2000, False))
 
-    slider = Slider(start=0.1, end=4, value=1, step=.1, title="power")
+    #slider = Slider(start=0.1, end=4, value=1, step=.1, title="power")
     
 
     callback = CustomJS(args=dict(source=geo_src, currsource=curr_geo_src), code="""
