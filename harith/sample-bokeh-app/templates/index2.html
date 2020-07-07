@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.72.0">
+  <title>US President Elections Forecast</title>
+
+  <link rel="canonical" href="https://v5.getbootstrap.com/docs/5.0/examples/starter-template/">
+
+  <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-0.12.14.min.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-0.12.14.min.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.bokeh.org/bokeh/release/bokeh-tables-0.12.14.min.css" type="text/css">
+  <link rel="icon" href="https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/harith/sample-bokeh-app/static/favicon.ico" >
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-api-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.0.2.min.js"></script>
+  <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-2.0.2.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+
+  <!-- Custom styles for this template -->
+  <link href="../static/css/starter-template.css" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+          <li class="nav-item active">
+            <a class="nav-link" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-xl">
+
+      <!-- <div class="bg-light p-5 rounded"> -->
+
+        <p></p>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+              <a class="nav-link" id="v-pills-summary-tab" data-toggle="pill" href="#v-pills-summary" role="tab" aria-controls="v-pills-summary" aria-selected="true">Sentiment Summary</a>
+              <a class="nav-link" id="v-pills-economy-tab" data-toggle="pill" href="#v-pills-economy" role="tab" aria-controls="v-pills-economy" aria-selected="false">Economy</a>
+              <a class="nav-link" id="v-pills-party-tab" data-toggle="pill" href="#v-pills-party" role="tab" aria-controls="v-pills-party" aria-selected="false">Party</a>
+              <a class="nav-link" id="v-pills-environment-tab" data-toggle="pill" href="#v-pills-environment" role="tab" aria-controls="v-pills-environment" aria-selected="false">Environment</a>
+              <a class="nav-link" id="v-pills-health-tab" data-toggle="pill" href="#v-pills-health" role="tab" aria-controls="v-pills-health" aria-selected="false">Health</a>
+              <a class="nav-link" id="v-pills-jobs-tab" data-toggle="pill" href="#v-pills-jobs" role="tab" aria-controls="v-pills-jobs" aria-selected="false">Jobs</a>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+               {{ map_div|safe }}
+               {{ map_script|safe }}
+
+
+             </div>
+             <div class="tab-pane fade" id="v-pills-summary" role="tabpanel" aria-labelledby="v-pills-summary-tab">
+
+              <h3>Home</h3>
+
+              <p class="lead">Use these maps to study the sentiments of every candidate in multiple areas. Sentiments are scaled from 1 (neg) to 5 (pos) and each label shows mean sentiment by each candidate</p>
+
+              {{ twtdiv_ey|safe }}
+              {{ twtscript_ey|safe }}
+
+            </div>
+            <div class="tab-pane fade" id="v-pills-economy" role="tabpanel" aria-labelledby="v-pills-economy-tab">
+
+              <h3>Candidate - Economy</h3>
+              <br/>
+              <div >
+                <div >
+                  <center>
+                    <p>Twitter & News Media Sentiment by Candidate and Economy</p>
+                    <div>
+                      {{ twtdiv_ec|safe }}
+
+                      {{ twtscript_ec|safe }}
+                    </div>
+                  </center>
+                </div>
+                <br/>
+                <hr/>
+                <h3>States Vulnerable To Economy</h3>
+                <br/>
+                <div >
+                  <img src="{{ url_for('static', filename='images/OH.png') }}" 
+                  width="70" height="70" style=" margin: 10px;"/> 
+                  <img src="{{ url_for('static', filename='images/PA.png') }}" 
+                  width="70" height="70" style=" margin: 10px;"/> 
+                  <img src="{{ url_for('static', filename='images/MI.png') }}" 
+                  width="70" height="70" style=" margin: 10px;"/> 
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-party" role="tabpanel" aria-labelledby="v-pills-party-tab">
+              <h1>Party</h1>
+              <hr/>
+              <h3>Candidate - Party</h3>
+              <br/>
+              <center>
+                <p>Twitter & News Media Sentiment by Candidate and Party</p>    
+
+                <div>
+                  {{ twtdiv_p|safe }}
+
+                  {{ twtscript_p|safe }}
+                </div>
+              </center>
+            </div>
+            <div class="tab-pane fade" id="v-pills-environment" role="tabpanel" aria-labelledby="v-pills-environment-tab">
+              <h1>Environment</h1>
+              <hr/>
+              <h3>Candidate - Environment</h3>
+              <br/>
+              <p>Twitter & News Media Sentiment by Candidate and Environment</p>
+              <div>
+                {{ twtdiv_en|safe }}
+
+                {{ twtscript_en|safe }}
+              </div>
+            </div>
+            <div class="tab-pane fade" id="v-pills-health" role="tabpanel" aria-labelledby="v-pills-health-tab">
+              <h3>Candidate - Health</h3>
+              <br/>
+              <p>Twitter & News Media Sentiment by Candidate and Health</p>
+              <div>
+                {{ twtdiv_h|safe }}
+
+                {{ twtscript_h|safe }}
+              </div>   
+            </div>
+            <div class="tab-pane fade" id="v-pills-jobs" role="tabpanel" aria-labelledby="v-pills-jobs-tab">
+
+              <h3>Candidate - Job</h3>
+              <br/>
+              <p>Twitter & News Media Sentiment by Candidate and Job</p>
+              <div>
+                {{ twtdiv_j|safe }}
+
+                {{ twtscript_j|safe }}
+              </div>   
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+
+  </main><!-- /.container -->
+
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

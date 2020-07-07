@@ -40,7 +40,7 @@ def chart():
     twtplot_j = twt.get_candidate_job_plot()
     twtscript_j, twtdiv_j = components(twtplot_j)
 
-    return render_template("index.html", count="5", 
+    return render_template("index2.html", count="5", 
         map_div=div, map_script=script, 
         twtdiv_ey=twtdiv_ey, twtscript_ey=twtscript_ey,
         twtdiv_p=twtdiv_p, twtscript_p=twtscript_p,
