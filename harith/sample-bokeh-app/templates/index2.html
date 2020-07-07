@@ -46,7 +46,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,7 @@
 
   <main class="container-xl">
 
-      <!-- <div class="bg-light p-5 rounded"> -->
+      <center><h1>US Presidential Elections Forecast</h1></center>
 
         <p></p>
 
@@ -77,11 +77,11 @@
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
               <a class="nav-link" id="v-pills-summary-tab" data-toggle="pill" href="#v-pills-summary" role="tab" aria-controls="v-pills-summary" aria-selected="true">Sentiment Summary</a>
-              <a class="nav-link" id="v-pills-economy-tab" data-toggle="pill" href="#v-pills-economy" role="tab" aria-controls="v-pills-economy" aria-selected="false">Economy</a>
-              <a class="nav-link" id="v-pills-party-tab" data-toggle="pill" href="#v-pills-party" role="tab" aria-controls="v-pills-party" aria-selected="false">Party</a>
-              <a class="nav-link" id="v-pills-environment-tab" data-toggle="pill" href="#v-pills-environment" role="tab" aria-controls="v-pills-environment" aria-selected="false">Environment</a>
-              <a class="nav-link" id="v-pills-health-tab" data-toggle="pill" href="#v-pills-health" role="tab" aria-controls="v-pills-health" aria-selected="false">Health</a>
-              <a class="nav-link" id="v-pills-jobs-tab" data-toggle="pill" href="#v-pills-jobs" role="tab" aria-controls="v-pills-jobs" aria-selected="false">Jobs</a>
+              <a class="nav-link" id="v-pills-economy-tab" data-toggle="pill" href="#v-pills-economy" role="tab" aria-controls="v-pills-economy" aria-selected="false">Sentiment: Economy</a>
+              <a class="nav-link" id="v-pills-party-tab" data-toggle="pill" href="#v-pills-party" role="tab" aria-controls="v-pills-party" aria-selected="false">Sentiment: Party</a>
+              <a class="nav-link" id="v-pills-environment-tab" data-toggle="pill" href="#v-pills-environment" role="tab" aria-controls="v-pills-environment" aria-selected="false">Sentiments: Environment</a>
+              <a class="nav-link" id="v-pills-health-tab" data-toggle="pill" href="#v-pills-health" role="tab" aria-controls="v-pills-health" aria-selected="false">Sentiment: Health</a>
+              <a class="nav-link" id="v-pills-jobs-tab" data-toggle="pill" href="#v-pills-jobs" role="tab" aria-controls="v-pills-jobs" aria-selected="false">Sentiment: Jobs</a>
             </div>
           </div>
           <div class="col-9">
@@ -91,13 +91,10 @@
                {{ map_div|safe }}
                {{ map_script|safe }}
 
-
              </div>
              <div class="tab-pane fade" id="v-pills-summary" role="tabpanel" aria-labelledby="v-pills-summary-tab">
 
-              <h3>Home</h3>
-
-              <p class="lead">Use these maps to study the sentiments of every candidate in multiple areas. Sentiments are scaled from 1 (neg) to 5 (pos) and each label shows mean sentiment by each candidate</p>
+              <p class="lead">Sentiments are scaled from 1 (neg) to 5 (pos) and each label shows mean sentiment by each candidate</p>
 
               {{ twtdiv_ey|safe }}
               {{ twtscript_ey|safe }}
@@ -133,8 +130,6 @@
               </div>
             </div>
             <div class="tab-pane fade" id="v-pills-party" role="tabpanel" aria-labelledby="v-pills-party-tab">
-              <h1>Party</h1>
-              <hr/>
               <h3>Candidate - Party</h3>
               <br/>
               <center>
@@ -148,8 +143,6 @@
               </center>
             </div>
             <div class="tab-pane fade" id="v-pills-environment" role="tabpanel" aria-labelledby="v-pills-environment-tab">
-              <h1>Environment</h1>
-              <hr/>
               <h3>Candidate - Environment</h3>
               <br/>
               <p>Twitter & News Media Sentiment by Candidate and Environment</p>
