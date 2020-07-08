@@ -83,11 +83,11 @@ def init_data():
     #total_data = "https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/data/combined_jun22.csv"
     #combined_df = pd.read_csv(total_data, encoding = "ISO-8859-1")
 
-    combined_df = pd.read_csv("https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/data/combined_jun13.csv")
+    combined_df = pd.read_csv("https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/data/Data-Jul07/combined_jul05.csv",encoding = "ISO-8859-1")
 
-    winning_party_binary = pd.get_dummies(combined_df["WINNING_PARTY"], drop_first = True)
-    combined_df["WINNING_PARTY_BINARY"] = winning_party_binary
-
+    #winning_party_binary = pd.get_dummies(combined_df["WINNING_PARTY"], drop_first = True)
+    #combined_df["WINNING_PARTY_BINARY"] = winning_party_binary
+    combined_df['FIPS']=combined_df['STATE_FIPS']*1000 + combined_df['COUNTY_FIPS']
     # read in counties shapefile from US Census Bureau
     counties_usa = gpd.read_file("bokeh/cb_2018_us_county_20m.shp")
     print("Counties Shapefile Dimensions: {}".format(counties_usa.shape))
@@ -121,13 +121,13 @@ def get_electmap_with_controls():
     curr_geo_src = GeoJSONDataSource(geojson = make_dataset(merged_cnt_data, 2000, False))
 
     #slider = Slider(start=0.1, end=4, value=1, step=.1, title="power")
-    
+
 
     callback = CustomJS(args=dict(source=geo_src, currsource=curr_geo_src), code="""
 
     var c_data = source.data;
     var yr = cb_obj.value;
-    
+
     for(var key in source.data){
       currsource.data[key] = [];
     }
