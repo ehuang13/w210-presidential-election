@@ -1,0 +1,85 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.1.0.min.js" integrity="sha384-YobFyzPeVUsFQydHkJGsJL1kyfHnWxOlPc3EwaV22TmBaeGoXHLWx5aRRVPS9xlE" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="76bbde2a-e8c6-48ad-9ede-658379669f8c" data-root-id="1027"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="1136">
+          {"86b2eb9c-8ee1-47e6-b1e1-e966b80b0bc8":{"roots":{"references":[{"attributes":{"axis_label":"Years","formatter":{"id":"1054"},"ticker":{"id":"1039"}},"id":"1038","type":"LinearAxis"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"salmon"},"line_alpha":{"value":0.1},"line_color":{"value":"green"},"top":{"field":"top"},"width":{"value":0.9},"x":{"field":"x"}},"id":"1049","type":"VBar"},{"attributes":{},"id":"1043","type":"BasicTicker"},{"attributes":{"data":{"top":[4.381991339641553,5.694161660582143,5.8284482827620065,7.855598656365553,5.243805903663697],"x":[2000,2004,2008,2012,2016]},"selected":{"id":"1058"},"selection_policy":{"id":"1057"}},"id":"1047","type":"ColumnDataSource"},{"attributes":{"source":{"id":"1047"}},"id":"1051","type":"CDSView"},{"attributes":{},"id":"1039","type":"BasicTicker"},{"attributes":{"below":[{"id":"1038"}],"center":[{"id":"1041"},{"id":"1045"}],"left":[{"id":"1042"}],"plot_height":10,"renderers":[{"id":"1050"}],"title":{"id":"1028"},"toolbar":{"id":"1046"},"toolbar_location":null,"x_range":{"id":"1030"},"x_scale":{"id":"1034"},"y_range":{"id":"1032"},"y_scale":{"id":"1036"}},"id":"1027","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"1054","type":"BasicTickFormatter"},{"attributes":{},"id":"1030","type":"DataRange1d"},{"attributes":{"text":"Average Unemployment Rate by Year"},"id":"1028","type":"Title"},{"attributes":{},"id":"1056","type":"BasicTickFormatter"},{"attributes":{"data_source":{"id":"1047"},"glyph":{"id":"1048"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"1049"},"selection_glyph":null,"view":{"id":"1051"}},"id":"1050","type":"GlyphRenderer"},{"attributes":{},"id":"1032","type":"DataRange1d"},{"attributes":{"axis":{"id":"1042"},"dimension":1,"ticker":null},"id":"1045","type":"Grid"},{"attributes":{"fill_alpha":{"value":0.5},"fill_color":{"value":"salmon"},"line_alpha":{"value":0.5},"line_color":{"value":"green"},"top":{"field":"top"},"width":{"value":0.9},"x":{"field":"x"}},"id":"1048","type":"VBar"},{"attributes":{},"id":"1036","type":"LinearScale"},{"attributes":{},"id":"1057","type":"UnionRenderers"},{"attributes":{"axis":{"id":"1038"},"ticker":null},"id":"1041","type":"Grid"},{"attributes":{},"id":"1034","type":"LinearScale"},{"attributes":{"axis_label":"Average Unemployment Rate","formatter":{"id":"1056"},"ticker":{"id":"1043"}},"id":"1042","type":"LinearAxis"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto"},"id":"1046","type":"Toolbar"},{"attributes":{},"id":"1058","type":"Selection"}],"root_ids":["1027"]},"title":"Bokeh Application","version":"2.1.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('1136').textContent;
+                  var render_items = [{"docid":"86b2eb9c-8ee1-47e6-b1e1-e966b80b0bc8","root_ids":["1027"],"roots":{"1027":"76bbde2a-e8c6-48ad-9ede-658379669f8c"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
