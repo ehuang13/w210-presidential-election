@@ -3,6 +3,7 @@ creds*
 twtdata/
 data2/
 data3/
+data1/
 .ipynb_checkpoints
 env/
 .history/

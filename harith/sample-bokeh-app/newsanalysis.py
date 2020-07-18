@@ -13,7 +13,7 @@ def plot_chart(rep_df, dem_df, rep_cand, dem_cand, title):
     rep_mean = round(rep_df["score"].mean(), 4)
     dem_mean = round(dem_df["score"].mean(), 4)
     
-    title = title + ' -> ' + rep_cand + ': ' + str(rep_mean) + ' & ' + str(dem_mean) 
+    title = title + ' -> ' + rep_cand + ': ' + str(rep_mean) + ' & ' + dem_cand + ': ' + str(dem_mean) 
 
     p = figure(x_axis_type="datetime", title=title, plot_height=200, plot_width=350)
     p.xgrid.grid_line_color=None
