@@ -11,6 +11,7 @@ from bokeh.layouts import column, row, WidgetBox
 from bokeh.palettes import brewer
 from bokeh.plotting import figure
 from bokeh.models.widgets import RadioButtonGroup, Slider, RangeSlider, Tabs
+import time
 
 def make_dataset(cnt_data, yr, shouldGetAll):
     merged_select = []
@@ -79,11 +80,7 @@ def init_data():
     pd.set_option("display.max_columns", None)
 
     # read in combined dataset
-    # load in Ahana's final merged dataset
-    #total_data = "https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/data/combined_jun22.csv"
-    #combined_df = pd.read_csv(total_data, encoding = "ISO-8859-1")
-
-    combined_df = pd.read_csv("https://raw.githubusercontent.com/ehuang13/w210-presidential-election/master/data/Data-Jul07/Input_Output_Jul07.csv",encoding = "ISO-8859-1")
+    combined_df = pd.read_csv("data/elections/Input_Output_Jul07.csv", encoding = "ISO-8859-1")
 
     #winning_party_binary = pd.get_dummies(combined_df["WINNING_PARTY"], drop_first = True)
     #combined_df["WINNING_PARTY_BINARY"] = winning_party_binary
@@ -98,9 +95,11 @@ def init_data():
     counties_usa["GEOID"] = counties_usa["GEOID"].astype("float64")
 
     # merge counties shapefile with combined_df
+    start = time.time()
     merged_counties = counties_usa.merge(combined_df, left_on="GEOID", right_on="FIPS")
-    print("Merged Counties Dataframe Dimensions: {}".format(merged_counties.shape))
-    merged_counties.head()
+    end = time.time()
+    print("Merged Counties Dataframe Dimensions:{}; time={}".format(merged_counties.shape, str(end-start)))
+    #merged_counties.head()
 
     # try to visualize Bladen county
     #merged_counties.iloc[0]["geometry"]
@@ -112,14 +111,24 @@ def init_data():
 
 def get_electmap_with_controls():
 
+    start = time.time()
     merged_cnt_data = init_data()
+    end = time.time()
+    print("init_data time={}".format(str(end-start)))
 
     year_select = Slider(start = 2000, end = 2020,
                          step = 4, value = 2000,
                          title = 'Election Year')
 
+    start = time.time()
     geo_src = GeoJSONDataSource(geojson = make_dataset(merged_cnt_data, year_select.value, True))
+    end = time.time()
+    print("geo_src time={}".format(str(end-start)))
+
+    start = time.time()
     curr_geo_src = GeoJSONDataSource(geojson = make_dataset(merged_cnt_data, 2000, False))
+    end = time.time()
+    print("curr_geo_src time={}".format(str(end-start)))
 
     #slider = Slider(start=0.1, end=4, value=1, step=.1, title="power")
 
@@ -146,9 +155,13 @@ def get_electmap_with_controls():
 
     year_select.js_on_change('value', callback)
 
+    start = time.time()
     p = make_plot(curr_geo_src)
     controls = WidgetBox(year_select)
     layout = row(p, controls)
+    end = time.time()
+    print("plot time={}", str(end-start))
+
 
     return layout
 
