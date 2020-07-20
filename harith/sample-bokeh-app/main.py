@@ -11,6 +11,7 @@ import electmapslider as mslider
 
 # starting Flask app
 from flask import Flask, render_template
+import time
 
 app = Flask(__name__)
 
@@ -21,8 +22,13 @@ def chart():
     #script, div = components(plot)
 
     plot = mslider.get_electmap_with_controls()
-    script, div = components(plot)
 
+    start = time.time()
+    script, div = components(plot)
+    end = time.time()
+    print("components time={}".format(str(end-start)))
+
+    start = time.time()
     twtplot_ey = twt.get_candidate_election_yearmonth_sent_plot()
     twtscript_ey, twtdiv_ey = components(twtplot_ey)
     
@@ -39,9 +45,11 @@ def chart():
     twtscript_i, twtdiv_i = components(twtplot_i)
     twtplot_j = twt.get_candidate_job_plot()
     twtscript_j, twtdiv_j = components(twtplot_j)
+    end = time.time()
+    print("twitter plots time={}".format(str(end-start)))
 
-    return render_template("index2.html", count="5", 
-        map_div=div, map_script=script, 
+    return render_template("index2.html", 
+        map_div=div, map_script=script,
         twtdiv_ey=twtdiv_ey, twtscript_ey=twtscript_ey,
         twtdiv_p=twtdiv_p, twtscript_p=twtscript_p,
         twtdiv_ec=twtdiv_ec, twtscript_ec=twtscript_ec,
@@ -49,13 +57,6 @@ def chart():
         twtdiv_h=twtdiv_h, twtscript_h=twtscript_h,
         twtdiv_i=twtdiv_i, twtscript_i=twtscript_i,
         twtdiv_j=twtdiv_j, twtscript_j=twtscript_j)
-
-    #return render_template("index.html", count="5", 
-    #    map_div=div, map_script=script)
-
-    # text = print("hello hello testing")
-    # return text
-
 
 
 if __name__ == '__main__':
