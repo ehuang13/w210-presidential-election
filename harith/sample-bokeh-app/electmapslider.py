@@ -5,34 +5,29 @@ import json
 from bokeh.io import show, curdoc
 from bokeh.models import (CDSView, ColorBar, ColumnDataSource,
                           CustomJS, CustomJSFilter,
-                          GeoJSONDataSource, HoverTool,
-                          LinearColorMapper, Slider)
+                          GeoJSONDataSource, HoverTool,TapTool,
+                          LinearColorMapper, Slider, Select)
 from bokeh.layouts import column, row, WidgetBox
 from bokeh.palettes import brewer
 from bokeh.plotting import figure
 from bokeh.models.widgets import RadioButtonGroup, Slider, RangeSlider, Tabs
 import time
+from bokeh.events import Tap
 
 def make_dataset_cnt(cnt_data, yr, shouldGetAll):
     merged_select = []
 
-    # create 2000 election year data frame
     if shouldGetAll:
         merged_select = cnt_data
     else:
         yr_selected = cnt_data["YEAR"] == yr
         merged_select = cnt_data[yr_selected]
 
-    # Bokeh uses geojson formatting, representing geographical features, with json
-    # Convert to json
     merged_json = json.loads(merged_select.to_json())
-    #Convert to json preferred string like object
     json_data = json.dumps(merged_json)
-    # input GeoJSON source that contains features for plotting
-    #geosource_select = GeoJSONDataSource(geojson = merged_select.to_json())
     return(json_data)
 
-def make_dataset_state(st_data, yr, shouldGetAll):
+def make_dataset_state(st_data, yr, state_fips, shouldGetAll):
     merged_select = []
 
     # create 2000 election year data frame
@@ -41,24 +36,20 @@ def make_dataset_state(st_data, yr, shouldGetAll):
     else:
         yr_selected = st_data["YEAR"] == yr
         merged_select = st_data[yr_selected]
+        merged_select = merged_select.loc[merged_select["STATE_FIPS"].isin([state_fips])]
 
-    # Bokeh uses geojson formatting, representing geographical features, with json
-    # Convert to json
     merged_json = json.loads(merged_select.to_json())
-    #Convert to json preferred string like object
     json_data = json.dumps(merged_json)
-    # input GeoJSON source that contains features for plotting
-    #geosource_select = GeoJSONDataSource(geojson = merged_select.to_json())
     return(json_data)
 
 def make_plot_st(geo_src):
     # define color palettes
     palette = brewer["GnBu"][8]
 
-# use reverse order so higher values are darker
+    # use reverse order so higher values are darker
     palette = palette[::-1]
 
-# instantiate LineraColorMapper and manually set low/high end for colorbar
+    # instantiate LineraColorMapper and manually set low/high end for colorbar
 
     color_mapper = LinearColorMapper(palette = palette, low = -1,
                                  high = 1)
@@ -71,29 +62,49 @@ def make_plot_st(geo_src):
                      location = (0,0),
                      orientation = "horizontal")
 
-# create figure object
+    # create figure object
     plot = figure(title = "Margin of Victory in Presidential Elections",
            plot_height = 600, plot_width = 950,
-           toolbar_location = "below",
-           tools = "pan, wheel_zoom, reset, tap")
+           toolbar_location = "below")
 
     plot.xgrid.grid_line_color = None
     plot.ygrid.grid_line_color = None
 
-# add patch renderer to figure
+    # add patch renderer to figure
     states = plot.patches("xs","ys", source = geo_src,
                        fill_color = {'field' :'MARGIN_VICTORY', 'transform' : color_mapper},
                        line_color = "gray",
                        line_width = 0.25,
                        fill_alpha = 1)
-# create hover tool
+    # create hover tool
     plot.add_tools(HoverTool(renderers = [states],
                       tooltips = [("State","@STATE"),
                                ("Rep Votes", "@TOTAL_REP_VOTES"), ("Dem Votes","@TOTAL_DEM_VOTES")]))
 
     plot.add_layout(color_bar, "below")
 
+    callbackStateClick = CustomJS(
+        args=dict(
+            source=geo_src), 
+            code="""
+
+    //var c_data = source.data;
+    var fips = cb_obj;
+
+    console.log(source)
+    console.log(source.selected.indices[0])
+
+    //console.log('data', cb_data)
+
+    //console.log('in state callback', fips)
+    """)
+
+    taptool = TapTool(callback=callbackStateClick)
+
+    plot.add_tools(taptool)
+
     return plot
+
 
 def make_plot_cnt(geo_src):
      # define color palettes
@@ -115,12 +126,26 @@ def make_plot_cnt(geo_src):
                          orientation = "horizontal")
 
 
+    callbackStateClick = CustomJS(
+        args=dict(
+            source=geo_src), 
+            code="""
+
+    //var c_data = source.data;
+    var fips = cb_obj.value;
+
+    console.log('in state callback')
+    """)
+
+    taptool = TapTool()
+
+
     # create figure object
     plot = figure(title = 'Test Bokeh Map',
                plot_height = 600 ,
                plot_width = 950,
-               toolbar_location = 'below',
-               tools = "pan, wheel_zoom, reset, tap")
+               toolbar_location = 'below')
+
     plot.xgrid.grid_line_color = None
     plot.ygrid.grid_line_color = None
 
@@ -140,6 +165,10 @@ def make_plot_cnt(geo_src):
                                     ('Dem Votes','@DEM_VOTES'),
                                      ('Rep Votes','@REP_VOTES')]))
 
+    plot.add_tools(taptool)
+
+
+    #plot.js_on_event(Tap, callbackStateClick)
 
     return plot
 
@@ -158,32 +187,19 @@ def update(attr, old, new):
 def get_county_data():
     # set pandas to display all columns in dataframe
     pd.set_option("display.max_columns", None)
-
     # read in combined dataset
     combined_df = pd.read_csv("data/elections/Input_Output_Jul07.csv", encoding = "ISO-8859-1")
 
-    #winning_party_binary = pd.get_dummies(combined_df["WINNING_PARTY"], drop_first = True)
-    #combined_df["WINNING_PARTY_BINARY"] = winning_party_binary
     combined_df['FIPS']=combined_df['STATE_FIPS']*1000 + combined_df['COUNTY_FIPS']
-    combined_df = combined_df.loc[~combined_df["STATE_FIPS"].isin( [2, 15])]
+    #combined_df = combined_df.loc[~combined_df["STATE_FIPS"].isin( [2, 15])]
     # read in counties shapefile from US Census Bureau
     counties_usa = gpd.read_file("bokeh/cb_2018_us_county_20m.shp")
-    #print("Counties Shapefile Dimensions: {}".format(counties_usa.shape))
-    #counties_usa.head()
-
+    
     # cast GEOID data type to float64 instead of str for merging
     counties_usa["GEOID"] = counties_usa["GEOID"].astype("float64")
 
-    # merge counties shapefile with combined_df
-    #start = time.time()
     merged_counties = counties_usa.merge(combined_df, left_on="GEOID", right_on="FIPS")
-    #end = time.time()
-    #print("Merged Counties Dataframe Dimensions:{}; time={}".format(merged_counties.shape, str(end-start)))
-    #merged_counties.head()
-
-    # try to visualize Bladen county
-    #merged_counties.iloc[0]["geometry"]
-
+    
     # drop Alaska and Hawaii
     merged_counties = merged_counties.loc[~merged_counties["STATE"].isin(["Alaska", "Hawaii"])]
 
@@ -218,9 +234,11 @@ def get_electmap_with_controls():
                          step = 4, value = 2000,
                          title = 'Election Year')
 
+    st_fips = 4
+
     #start = time.time()
     geo_src_c = GeoJSONDataSource(geojson = make_dataset_cnt(merged_cnt_data, year_select.value, True))
-    geo_src_s = GeoJSONDataSource(geojson = make_dataset_state(merged_st_data, year_select.value, True))
+    geo_src_s = GeoJSONDataSource(geojson = make_dataset_state(merged_st_data, year_select.value, st_fips, True))
     #end = time.time()
     #print("geo_src time={}".format(str(end-start)))
 
@@ -233,9 +251,9 @@ def get_electmap_with_controls():
     #slider = Slider(start=0.1, end=4, value=1, step=.1, title="power")
 
 
-    callback = CustomJS(
+    callbackSelector = CustomJS(
         args=dict(
-            source=geo_src_c, currsource=curr_geo_src_c, srcst=geo_src_s, currsrcs=curr_geo_src_s), 
+            source=geo_src_s, currsource=curr_geo_src_s), 
             code="""
 
     //var c_data = source.data;
@@ -243,10 +261,6 @@ def get_electmap_with_controls():
 
     for(var key in source.data){
       currsource.data[key] = [];
-    }
-
-    for(var key in srcst.data){
-      currsrcs.data[key] = [];
     }
 
     for (var i = 0; i <= source.data['YEAR'].length; i++){
@@ -257,25 +271,24 @@ def get_electmap_with_controls():
         }
     }
 
-    for (var i = 0; i <= srcst.data['YEAR'].length; i++){
-        if (srcst.data['YEAR'][i] == yr){
-            for(var key in srcst.data){
-                currsrcs.data[key].push(srcst.data[key][i]);
-            }
-        }
-    }
-
     currsource.change.emit();
-    currsrcs.change.emit();
     """)
 
-    year_select.js_on_change('value', callback)
+    year_select.js_on_change('value', callbackSelector)
+
+
+    
+
+    #curr_geo_src_s.js_on_event('value', callbackStateClick)
 
     #start = time.time()
-    p_c = make_plot_cnt(curr_geo_src_c)
+    #p_c = make_plot_cnt(curr_geo_src_c)
     p_s = make_plot_st(curr_geo_src_s)
+
+    #p_s.js_on_event('value', callbackStateClick)
+
     controls = WidgetBox(year_select)
-    layout = row(controls, p_c, p_s)
+    layout = row(p_s, controls)
     #end = time.time()
     #print("plot time={}", str(end-start))
 
