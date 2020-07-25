@@ -64,6 +64,7 @@ def make_plot(geo_src):
                                ("Rep Votes", "@REP_VOTES"), ("Dem Votes","@DEM_VOTES")]))
     return plot
 
+#TODO: obsolete
 def update(attr, old, new):
         new_src = make_dataset(int(new))
 
@@ -75,7 +76,7 @@ def update(attr, old, new):
         curdoc().clear()
         curdoc().add_root(layout)
 
-def init_data():
+def get_county_data():
     # set pandas to display all columns in dataframe
     pd.set_option("display.max_columns", None)
 
@@ -88,17 +89,17 @@ def init_data():
     combined_df = combined_df.loc[~combined_df["STATE_FIPS"].isin( [2, 15])]
     # read in counties shapefile from US Census Bureau
     counties_usa = gpd.read_file("bokeh/cb_2018_us_county_20m.shp")
-    print("Counties Shapefile Dimensions: {}".format(counties_usa.shape))
-    counties_usa.head()
+    #print("Counties Shapefile Dimensions: {}".format(counties_usa.shape))
+    #counties_usa.head()
 
     # cast GEOID data type to float64 instead of str for merging
     counties_usa["GEOID"] = counties_usa["GEOID"].astype("float64")
 
     # merge counties shapefile with combined_df
-    start = time.time()
+    #start = time.time()
     merged_counties = counties_usa.merge(combined_df, left_on="GEOID", right_on="FIPS")
-    end = time.time()
-    print("Merged Counties Dataframe Dimensions:{}; time={}".format(merged_counties.shape, str(end-start)))
+    #end = time.time()
+    #print("Merged Counties Dataframe Dimensions:{}; time={}".format(merged_counties.shape, str(end-start)))
     #merged_counties.head()
 
     # try to visualize Bladen county
@@ -106,6 +107,24 @@ def init_data():
 
     # drop Alaska and Hawaii
     merged_counties = merged_counties.loc[~merged_counties["STATE"].isin(["Alaska", "Hawaii"])]
+
+    return merged_counties
+
+def get_state_data():
+    state_data = "state_aggregated_0723.csv"
+    state_df = pd.read_csv(state_data, encoding = "ISO-8859-1")
+    states_usa = gpd.read_file("bokeh/cb_2018_us_state_20m.shp")
+    #print("States shapefile dimension: {}".format(states_usa.shape))
+    states_usa = states_usa.loc[~states_usa["NAME"].isin(["Alaska", "Hawaii"])]
+    states_usa["STATEFP"] = states_usa["STATEFP"].astype("int64")
+    merged_states = states_usa.merge(state_df, left_on="STATEFP", right_on="STATE_FIPS")
+    #print("Merged States Dataframe Dimensions: {}".format(merged_states.shape))
+
+    return merged_states
+
+def init_data():
+    merged_counties = get_county_data()
+    merged_states = get_state_data()
 
     return merged_counties
 
