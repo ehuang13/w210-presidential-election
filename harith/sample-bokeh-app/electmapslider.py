@@ -14,7 +14,7 @@ from bokeh.models.widgets import RadioButtonGroup, Slider, RangeSlider, Tabs
 import time
 from bokeh.events import Tap
 
-def make_dataset_cnt(cnt_data, yr, shouldGetAll):
+def make_dataset_state(cnt_data, yr, shouldGetAll):
     merged_select = []
 
     if shouldGetAll:
@@ -27,7 +27,7 @@ def make_dataset_cnt(cnt_data, yr, shouldGetAll):
     json_data = json.dumps(merged_json)
     return(json_data)
 
-def make_dataset_state(st_data, yr, state_fips, shouldGetAll):
+def make_dataset_cnt(st_data, yr, state_fips, shouldGetAll):
     merged_select = []
 
     # create 2000 election year data frame
@@ -83,26 +83,6 @@ def make_plot_st(geo_src):
 
     plot.add_layout(color_bar, "below")
 
-    callbackStateClick = CustomJS(
-        args=dict(
-            source=geo_src), 
-            code="""
-
-    //var c_data = source.data;
-    var fips = cb_obj;
-
-    console.log(source)
-    console.log(source.selected.indices[0])
-
-    //console.log('data', cb_data)
-
-    //console.log('in state callback', fips)
-    """)
-
-    taptool = TapTool(callback=callbackStateClick)
-
-    plot.add_tools(taptool)
-
     return plot
 
 
@@ -125,19 +105,7 @@ def make_plot_cnt(geo_src):
                          location = (0,0),
                          orientation = "horizontal")
 
-
-    callbackStateClick = CustomJS(
-        args=dict(
-            source=geo_src), 
-            code="""
-
-    //var c_data = source.data;
-    var fips = cb_obj.value;
-
-    console.log('in state callback')
-    """)
-
-    taptool = TapTool()
+    #taptool = TapTool()
 
 
     # create figure object
@@ -165,7 +133,7 @@ def make_plot_cnt(geo_src):
                                     ('Dem Votes','@DEM_VOTES'),
                                      ('Rep Votes','@REP_VOTES')]))
 
-    plot.add_tools(taptool)
+    #plot.add_tools(taptool)
 
 
     #plot.js_on_event(Tap, callbackStateClick)
@@ -185,22 +153,13 @@ def update(attr, old, new):
         curdoc().add_root(layout)
 
 def get_county_data():
-    # set pandas to display all columns in dataframe
+
     pd.set_option("display.max_columns", None)
-    # read in combined dataset
     combined_df = pd.read_csv("data/elections/Input_Output_Jul07.csv", encoding = "ISO-8859-1")
-
     combined_df['FIPS']=combined_df['STATE_FIPS']*1000 + combined_df['COUNTY_FIPS']
-    #combined_df = combined_df.loc[~combined_df["STATE_FIPS"].isin( [2, 15])]
-    # read in counties shapefile from US Census Bureau
     counties_usa = gpd.read_file("bokeh/cb_2018_us_county_20m.shp")
-    
-    # cast GEOID data type to float64 instead of str for merging
     counties_usa["GEOID"] = counties_usa["GEOID"].astype("float64")
-
     merged_counties = counties_usa.merge(combined_df, left_on="GEOID", right_on="FIPS")
-    
-    # drop Alaska and Hawaii
     merged_counties = merged_counties.loc[~merged_counties["STATE"].isin(["Alaska", "Hawaii"])]
 
     return merged_counties
@@ -209,12 +168,9 @@ def get_state_data():
     state_data = "data/elections/state_aggregated_0723.csv"
     state_df = pd.read_csv(state_data, encoding = "ISO-8859-1")
     states_usa = gpd.read_file("bokeh/cb_2018_us_state_20m.shp")
-    #print("States shapefile dimension: {}".format(states_usa.shape))
     states_usa = states_usa.loc[~states_usa["NAME"].isin(["Alaska", "Hawaii"])]
     states_usa["STATEFP"] = states_usa["STATEFP"].astype("int64")
     merged_states = states_usa.merge(state_df, left_on="STATEFP", right_on="STATE_FIPS")
-    #print("Merged States Dataframe Dimensions: {}".format(merged_states.shape))
-
     return merged_states
 
 def init_data():
@@ -237,14 +193,14 @@ def get_electmap_with_controls():
     st_fips = 4
 
     #start = time.time()
-    geo_src_c = GeoJSONDataSource(geojson = make_dataset_cnt(merged_cnt_data, year_select.value, True))
-    geo_src_s = GeoJSONDataSource(geojson = make_dataset_state(merged_st_data, year_select.value, st_fips, True))
+    geo_src_c = GeoJSONDataSource(geojson = make_dataset_cnt(merged_cnt_data, year_select.value, 0, True))
+    geo_src_s = GeoJSONDataSource(geojson = make_dataset_state(merged_st_data, year_select.value, True))
     #end = time.time()
     #print("geo_src time={}".format(str(end-start)))
 
     #start = time.time()
-    curr_geo_src_c = GeoJSONDataSource(geojson = make_dataset_cnt(merged_cnt_data, 2000, False))
-    curr_geo_src_s = GeoJSONDataSource(geojson = make_dataset_cnt(merged_st_data, 2000, False))
+    curr_geo_src_c = GeoJSONDataSource(geojson = make_dataset_cnt(merged_cnt_data, 2000, st_fips, False))
+    curr_geo_src_s = GeoJSONDataSource(geojson = make_dataset_state(merged_st_data, 2000, False))
     #end = time.time()
     #print("curr_geo_src time={}".format(str(end-start)))
 
@@ -253,25 +209,39 @@ def get_electmap_with_controls():
 
     callbackSelector = CustomJS(
         args=dict(
-            source=geo_src_s, currsource=curr_geo_src_s), 
+            source_s=geo_src_s, currsource_s=curr_geo_src_s, source_c=geo_src_c, currsource_c=curr_geo_src_c), 
             code="""
 
-    //var c_data = source.data;
+    //var c_data = source_s.data;
     var yr = cb_obj.value;
 
-    for(var key in source.data){
-      currsource.data[key] = [];
+    for(var key in source_s.data){
+      currsource_s.data[key] = [];
     }
 
-    for (var i = 0; i <= source.data['YEAR'].length; i++){
-        if (source.data['YEAR'][i] == yr){
-            for(var key in source.data){
-                currsource.data[key].push(source.data[key][i]);
+    for (var i = 0; i <= source_s.data['YEAR'].length; i++){
+        if (source_s.data['YEAR'][i] == yr){
+            for(var key in source_s.data){
+                currsource_s.data[key].push(source_s.data[key][i]);
             }
         }
     }
 
-    currsource.change.emit();
+    var st_fip = currsource_c.data['STATE_FIPS'][0];
+
+    console.log(st_fip);
+
+    for (var i = 0; i <= source_c.data['YEAR'].length; i++){
+        if (source_c.data['YEAR'][i] == yr && source_c.data['STATE_FIPS'][i] == st_fip){
+            for(var key in source_c.data){
+                currsource_c.data[key].push(source_c.data[key][i]);
+            }
+        }
+    }
+
+    currsource_s.change.emit();
+    currsource_c.change.emit();
+
     """)
 
     year_select.js_on_change('value', callbackSelector)
@@ -282,13 +252,49 @@ def get_electmap_with_controls():
     #curr_geo_src_s.js_on_event('value', callbackStateClick)
 
     #start = time.time()
-    #p_c = make_plot_cnt(curr_geo_src_c)
+    p_c = make_plot_cnt(curr_geo_src_c)
     p_s = make_plot_st(curr_geo_src_s)
+
+
+    callbackStateClick = CustomJS(
+        args=dict(
+            source=curr_geo_src_s, source_c=geo_src_c, source_curr_c=curr_geo_src_c), 
+            code="""
+
+    var st_fip = 0;
+
+    for(var key in source.data){
+        if (key == 'STATE_FIPS')
+        {
+            st_fip = source.data['STATE_FIPS'][source.selected.indices[0]];
+        }
+    }
+
+    for(var key in source_c.data){
+      source_curr_c.data[key] = [];
+    }
+
+    for (var i = 0; i <= source_c.data['YEAR'].length; i++){
+        if (source_c.data['STATE_FIPS'][i] == st_fip){
+            for(var key in source_c.data){
+                source_curr_c.data[key].push(source_c.data[key][i]);
+            }
+        }
+    }
+
+    source_curr_c.change.emit();
+
+    """)
+
+    taptool = TapTool(callback=callbackStateClick)
+
+    p_s.add_tools(taptool)
+
 
     #p_s.js_on_event('value', callbackStateClick)
 
     controls = WidgetBox(year_select)
-    layout = row(p_s, controls)
+    layout = row(p_s, p_c, controls)
     #end = time.time()
     #print("plot time={}", str(end-start))
 
