@@ -9,3 +9,4 @@ data23/
 .ipynb_checkpoints
 env/
 .history/
+glove.840B.300d.txt
