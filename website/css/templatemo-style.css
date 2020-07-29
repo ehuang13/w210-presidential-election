@@ -304,6 +304,10 @@ a:focus {
   backface-visibility: hidden;
 }
 
+figcaption h2{
+  font-size: 14px;
+}
+
 .grid figure figcaption::before,
 .grid figure figcaption::after {
   pointer-events: none;
