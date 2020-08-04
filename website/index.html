@@ -65,7 +65,7 @@
             <li><a data-scroll-nav="0" href="#main-banner" class="active">Home</a></li>
             <li><a data-scroll-nav="1" href="#about">About Us</a></li>
             <li><a data-scroll-nav="2" href="#issues">Forecast</a></li>
-            <!-- <li><a data-scroll-nav="3" href="#event">Event</a></li> -->
+            <li><a data-scroll-nav="3" href="#event">Methodology</a></li>
             <li><a data-scroll-nav="4" href="#gallery">Team</a></li>
             <!-- <li><a data-scroll-nav="5" href="#media">Multimedia</a></li> -->
             <!-- <li><a data-scroll-nav="6" href="#blog">Blog</a></li> -->
@@ -77,7 +77,7 @@
   </header>
 
   <div id="main-banner" class="banner-one" data-scroll-index="0">
-    <div data-src="uploads/slide-1.jpg">
+    <div data-src="uploads/inauguration.jpg">
       <div class="camera_caption">
         <div class="container">
           <h1 class="wow fadeInUp animated">A new approach to election forecasting</h1>
@@ -141,7 +141,7 @@
                 <img src="uploads/perspective.jpg" alt="" class="img-responsive">
                 <div class="hover-up">
                   <h3>Non-polls based election forecasting</h3>
-                  <p>We offer a different approach to capture hidden undecided voters' voting preferences</p>
+                  <p>We offer a different approach to capture undecided voters' hidden voting preferences</p>
                 </div>
             </div>
 
@@ -155,7 +155,7 @@
                 <img src="uploads/topic.jpg" alt="" class="img-responsive">
                 <div class="hover-up">
                   <h3>Undecided voters vote by topic</h3>
-                  <p>We believe that in close-call scenarios, undecided voters are swayed by candidates' position on key topics, and not along ideological party lines.</p>
+                  <p>In close-call scenarios, we believe undecided voters vote based on candidates' position on key issues, and not based on ideological party lines.</p>
                 </div>
             </div>
 
@@ -168,8 +168,8 @@
               <a href="uploads/action.jpg" data-rel="prettyPhoto[gal]" </a>
                 <img src="uploads/action.jpg" alt="" class="img-responsive">
                 <div class="hover-up">
-                  <h3>Differentiated and cost-effective approach to election forecasting</h3>
-                  <p>Our model calculates and pulls in voter sentiments for each candidate, by key issues, daily.</p>
+                  <h3>Cost-effective approach to election forecasting</h3>
+                  <p>Our model calculates and pulls in voter sentiments for each candidate, by key issues, monthly.</p>
                 </div>
             </div>
 
@@ -200,7 +200,7 @@
     <div class="container">
       <div class="section-title text-left">
         <h3>2020 Presidential Election Forecast</h3>
-        <p class="lead">See county and state level forecast by candidate, and and who is leading in key topic sentiment scores amongst voters in battleground states.</p>
+        <p class="lead">See county and state level forecasts by candidate. Understand how candidates are trending amongst voters in key issues' sentiment scores in battleground states.</p>
       </div><!-- end title -->
 
       <div class="row">
@@ -223,26 +223,64 @@
           <div class="issuse-wrap clearfix">
             <img src="uploads/issue_02.jpg" alt="" class="img-responsive img-rounded alignleft">
             <h4>SIGNALS</h4>
-            <p>60 million tweets, news headlines, and google trends as signals undecided voter's sentiment on key issues. We also factored in historic bellwether counties and voter participation rates.</p>
+            <p>480,000 tweets, news headlines, and google trends as signals for undecided voter's sentiment on key issues. We also factored in historic bellwether counties and voter participation rates.</p>
           </div><!-- end issue -->
 
           <div class="issuse-wrap clearfix">
             <img src="uploads/google.png" alt="" class="img-responsive img-rounded alignleft">
             <h4>PIPELINE & ARCHITECTURE</h4>
-            <p>Our data and model predictions are hosted on Google App Engine, and deployed with Flask and Bokeh.</p>
+            <p>Our data and model predictions are hosted on Google Cloud Platform, and our visualizations are deployed with Flask and Bokeh.</p>
           </div><!-- end issue -->
 
           <div class="issuse-wrap lastchild clearfix">
             <img src="uploads/methodology.jpg" alt="" class="img-responsive img-rounded alignleft">
-            <h4>METHDOLOGY</h4>
-            <p>We trained our model on more than 18,000 historical county predictions for the last 6 election years. We also leveraged a recursive neural tensor network to calculate sentiment scores for candidates by key topics.</p>
+            <h4>METHODOLOGY</h4>
+            <p>We trained our model on more than 18,000 county results from the last 6 election years. We also leveraged NLP to calculate sentiment scores for candidates by key issues.</p>
           </div><!-- end issue -->
         </div><!-- end col -->
       </div><!-- end row -->
     </div><!-- end container -->
   </div><!-- end section -->
 
-  <div id="gallery" data-scroll-index="4" class="section wb">
+  <div id="event" data-scroll-index="3" class="section wb">
+    <div class="container">
+      <div class="section-title text-center">
+        <h3>Methodology & Future Work</h3>
+      </div><!-- end title -->
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="participate-wrap">
+            <small>General Modeling Approach</small>
+            <figure>
+              <img src="uploads/approach.jpg" alt="" class="img-responsive">
+            </figure>
+          </div><!-- end participate -->
+        </div><!-- end col -->
+
+        <div class="col-md-4">
+          <div class="participate-wrap">
+            <small>Model Integration</small>
+            <figure>
+              <img src="uploads/integration.jpg" alt="" class="img-responsive">
+            </figure>
+          </div><!-- end participate -->
+        </div><!-- end col -->
+
+        <div class="col-md-4">
+          <div class="participate-wrap">
+            <small>Potential Future Development</small>
+            <figure>
+              <img src="uploads/application.jpg" alt="" class="img-responsive">
+            </figure>
+          </div><!-- end participate -->
+        </div><!-- end col -->
+      </div><!-- end row -->
+    </div><!-- end container -->
+  </div><!-- end section -->
+
+
+  <div id="gallery" data-scroll-index="4" class="section lb">
     <div class="container">
       <div class="section-title text-center">
         <h3>The Team</h3>
@@ -280,7 +318,7 @@
             <div class="img-overlay">
               <div class="hover-up"></div>
               <a href="uploads/rishi.png" data-rel="prettyPhoto[gal]" </a>
-                <h3>Rishiketh Majumder</h3>
+                <h3>Rishikesh Majumder</h3>
                 <p class="group">Pipeline Development<br>Algorithm Design<br>Model Implementation</p>
             </div>
           </div>
@@ -326,7 +364,7 @@
       <div class="section-title text-center">
         <h3>Partner With Us</h3>
       </div><!-- end title -->
-      <div class="tm-next">
+      <div class="tm-next text-center">
         <a href="https://docs.google.com/forms/d/1rtdlLyZBjQ9FMFky6C1hhh42ITnOrFSIGwtOpOmrN1g/prefill" data-scroll class="btn btn-light btn-radius btn-brd grd1">Submit inquiries here</a>
       </div>
 
