@@ -1,0 +1,52 @@
+,STATE_FIPS,PRED_DEM_VOTES,PRED_REP_VOTES,PRED_WINNING_PARTY,STATE,TOTAL_DEM_VOTES,TOTAL_REP_VOTES,TOTAL_VOTES,MARGIN_VICTORY,ABS_MARGIN_VICTORY,WINNING_PARTY,ELECTORAL_VOTES,TOP_TOPIC
+0,1,955338,1172658,1,Alabama,,,,,,,9,Economy
+1,2,257137,255197,0,Alaska,,,,,,,3,Economy
+2,4,1831552,800065,0,Arizona,,,,,,,11,Immigration
+3,5,522019,708477,1,Arkansas,,,,,,,6,Economy
+4,6,10497036,3758870,0,California,,,,,,,55,Economy
+5,8,1405796,1112536,0,Colorado,,,,,,,9,Healthcare
+6,9,998466,637585,0,Connecticut,,,,,,,7,Economy
+7,10,233333,210836,0,Delaware,,,,,,,3,Economy
+8,11,173311,97730,0,District of Columbia,,,,,,,3,Healthcare
+9,12,4865579,4084786,0,Florida,,,,,,,29,Economy
+10,13,2225684,2373058,1,Georgia,,,,,,,16,Economy
+11,15,299860,173099,0,Hawaii,,,,,,,4,Healthcare
+12,16,312440,501446,1,Idaho,,,,,,,4,Economy
+13,17,3396735,1971563,0,Illinois,,,,,,,20,Economy
+14,18,1276277,1635359,1,Indiana,,,,,,,11,Economy
+15,19,687165,863503,1,Iowa,,,,,,,6,Healthcare
+16,20,674449,757233,1,Kansas,,,,,,,6,Healthcare
+17,21,874128,1128637,1,Kentucky,,,,,,,8,Economy
+18,22,881635,1007689,1,Louisiana,,,,,,,8,Economy
+19,23,309375,369914,1,Maine,,,,,,,4,Healthcare
+20,24,1566041,1081236,0,Maryland,,,,,,,10,Economy
+21,25,2011733,1169238,0,Massachusetts,,,,,,,11,Economy
+22,26,2450529,2203921,0,Michigan,,,,,,,16,Economy
+23,27,1315589,1328331,1,Minnesota,,,,,,,10,Economy
+24,28,507866,686206,1,Mississippi,,,,,,,6,Economy
+25,29,1251106,1456631,1,Missouri,,,,,,,10,Economy
+26,30,226036,323117,1,Montana,,,,,,,3,Economy
+27,31,360034,542484,1,Nebraska,,,,,,,5,Economy
+28,32,797976,444664,0,Nevada,,,,,,,6,Immigration
+29,33,364238,345775,0,New Hampshire,,,,,,,4,Economy
+30,34,2269660,1534054,0,New Jersey,,,,,,,14,Healthcare
+31,35,378738,321050,0,New Mexico,,,,,,,5,Economy
+32,36,4754072,3272319,0,New York,,,,,,,29,Economy
+33,37,2290307,2286195,0,North Carolina,,,,,,,15,Economy
+34,38,162716,236600,1,North Dakota,,,,,,,3,Economy
+35,39,2606578,2671624,1,Ohio,,,,,,,18,Economy
+36,40,630239,814596,1,Oklahoma,,,,,,,7,Economy
+37,41,925590,924142,0,Oregon,,,,,,,7,Economy
+38,42,3025959,2781088,0,Pennsylvania,,,,,,,20,Economy
+39,44,255517,229426,0,Rhode Island,,,,,,,4,Economy
+40,45,1032739,1186982,1,South Carolina,,,,,,,9,Economy
+41,46,189636,311229,1,South Dakota,,,,,,,3,Economy
+42,47,1340115,1560376,1,Tennessee,,,,,,,11,Economy
+43,48,5252975,4741290,0,Texas,,,,,,,38,Economy
+44,49,482891,556399,1,Utah,,,,,,,6,Economy
+45,50,176981,122439,0,Vermont,,,,,,,3,Healthcare
+46,51,1951988,1979096,1,Virginia,,,,,,,13,Economy
+47,53,1927390,1337908,0,Washington,,,,,,,12,Economy
+48,54,272149,509009,1,West Virginia,,,,,,,5,Economy
+49,55,1165682,1527701,1,Wisconsin,,,,,,,10,Economy
+50,56,72813,136064,1,Wyoming,,,,,,,3,Economy
