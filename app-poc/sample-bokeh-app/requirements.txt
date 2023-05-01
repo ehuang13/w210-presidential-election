@@ -2,7 +2,7 @@
 #Bokeh==2.0.2
 #numpy==1.18.1
 
-Flask==1.0.2
+Flask==2.3.2
 Bokeh==2.1.1
 gunicorn==19.9.0
 Numpy==1.17.0
